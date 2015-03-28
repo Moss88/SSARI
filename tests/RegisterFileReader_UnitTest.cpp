@@ -1,4 +1,4 @@
-#include <IRNav/RegisterFileReader.h>
+#include <RegisterFileReader.h>
 #include "gtest/gtest.h"
 using namespace BFAST;
 TEST(RegisterFileReader, ReadXMLFile) {

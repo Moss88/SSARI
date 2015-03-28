@@ -7,8 +7,8 @@
 
 #ifndef TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
 #define TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
-#include<BoolLogic/Constraint.h>
-#include<BoolLogic/CVar.h>
+#include<Constraint.h>
+#include<CVar.h>
 #include<memory>
 #include<string>
 #include<map>

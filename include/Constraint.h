@@ -9,9 +9,9 @@
 #define SRC_BOOLLOGIC_CONSTRAINT_H_
 #include <vector>
 #include <memory>
-#include <BoolLogic/CValue.h>
-#include <BoolLogic/COperator.h>
-#include <BoolLogic/COperand.h>
+#include <CValue.h>
+#include <COperator.h>
+#include <COperand.h>
 using namespace std;
 
 namespace BFAST {

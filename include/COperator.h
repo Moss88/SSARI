@@ -7,7 +7,7 @@
 
 #ifndef SRC_BOOLLOGIC_COPERATOR_H_
 #define SRC_BOOLLOGIC_COPERATOR_H_
-#include "BoolLogic/CValue.h"
+#include <CValue.h>
 namespace BFAST {
 
 class COperator : public CValue {

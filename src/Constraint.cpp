@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include "BoolLogic/Constraint.h"
+#include <Constraint.h>
 
 #include <libxml++/document.h>
 using namespace xmlpp;

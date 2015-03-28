@@ -1,5 +1,5 @@
-#include "IRNav/RegisterFileReader.h"
-#include <BoolLogic/CConstant.h>
+#include <RegisterFileReader.h>
+#include <CConstant.h>
 
 using std::cout;
 using std::endl;

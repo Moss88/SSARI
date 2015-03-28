@@ -15,10 +15,6 @@ include_directories(/usr/lib/x86_64-linux-gnu/glib-2.0/include)
 file(GLOB_RECURSE PROJECT_SOURCES "src/*.cpp")
 message(STATUS "${PROJECT_SOURCES}")
 
-if (NOT DEFINED ENV{LLVM_LOC})
-	message(FATAL_ERROR "LLVM_LOC is not defined")
-endif()
-
 
 add_subdirectory(gtest-1.7.0)
 add_subdirectory(src)

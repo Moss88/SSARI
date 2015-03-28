@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include "BoolLogic/COperand.h"
+#include <COperand.h>
 #include <sstream>
 using std::stringstream;
 namespace BFAST {

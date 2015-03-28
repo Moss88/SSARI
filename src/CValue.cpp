@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include "BoolLogic/CValue.h"
+#include <CValue.h>
 
 namespace BFAST {
 

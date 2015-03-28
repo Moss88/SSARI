@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <BoolLogic/CConstant.h>
+#include <CConstant.h>
 
 namespace BFAST {
 

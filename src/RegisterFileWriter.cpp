@@ -1,4 +1,4 @@
-#include <IRNav/RegisterFileWriter.h>
+#include <RegisterFileWriter.h>
 #include <libxml++/document.h>
 
 using namespace xmlpp;

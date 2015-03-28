@@ -4,7 +4,7 @@
 
 #include <libxml++/libxml++.h>
 #include <libxml++/attribute.h>
-#include <IRNav/RegisterFile.h>
+#include <RegisterFile.h>
 #include <string>
 #include <iostream>
 using xmlpp::Attribute;

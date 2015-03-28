@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <BoolLogic/CVar.h>
+#include <CVar.h>
 #include <sstream>
 using std::stringstream;
 namespace BFAST {

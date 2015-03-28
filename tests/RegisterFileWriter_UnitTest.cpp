@@ -1,5 +1,5 @@
-#include <IRNav/RegisterFileWriter.h>
-#include <BoolLogic/CConstant.h>
+#include <RegisterFileWriter.h>
+#include <CConstant.h>
 
 #include "gtest/gtest.h"
 

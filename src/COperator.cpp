@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include "BoolLogic/COperator.h"
+#include <COperator.h>
 
 namespace BFAST {
 

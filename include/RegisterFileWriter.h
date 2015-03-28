@@ -1,7 +1,7 @@
 #ifndef REGISTERFILEWRITER
 #define REGISTERFILEWRITER
 
-#include <IRNav/RegisterFile.h>
+#include <RegisterFile.h>
 namespace BFAST {
 
 class RegisterFileWriter {

@@ -7,7 +7,7 @@
 
 #ifndef INCLUDE_BOOLLOGIC_CVAR_H_
 #define INCLUDE_BOOLLOGIC_CVAR_H_
-#include <BoolLogic/COperand.h>
+#include <COperand.h>
 namespace BFAST {
 
 class CVar : public COperand {

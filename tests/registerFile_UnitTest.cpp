@@ -18,7 +18,7 @@
 #include "gtest/gtest.h"
 #include <iostream>
 
-#include "../include/IRNav/RegisterFile.h"
+#include <RegisterFile.h>
 using namespace BFAST;
 using std::cout;
 using std::endl;
