@@ -8,7 +8,7 @@
 #ifndef SRC_BOOLLOGIC_COPERAND_H_
 #define SRC_BOOLLOGIC_COPERAND_H_
 #include <string>
-#include <CValue.h>
+#include "CValue.h"
 
 using std::string;
 namespace SSARI {

@@ -7,7 +7,7 @@
 
 #ifndef SRC_BOOLLOGIC_COPERATOR_H_
 #define SRC_BOOLLOGIC_COPERATOR_H_
-#include <CValue.h>
+#include "CValue.h"
 namespace SSARI {
 
 class COperator : public CValue {

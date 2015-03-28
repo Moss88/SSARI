@@ -7,7 +7,7 @@
 
 #ifndef INCLUDE_BOOLLOGIC_CVAR_H_
 #define INCLUDE_BOOLLOGIC_CVAR_H_
-#include <COperand.h>
+#include "COperand.h"
 namespace SSARI {
 
 class CVar : public COperand {

@@ -1,7 +1,7 @@
 #ifndef REGISTERFILEWRITER
 #define REGISTERFILEWRITER
 
-#include <RegisterFile.h>
+#include "RegisterFile.h"
 namespace SSARI {
 
 class RegisterFileWriter {

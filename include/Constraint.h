@@ -9,9 +9,9 @@
 #define SRC_BOOLLOGIC_CONSTRAINT_H_
 #include <vector>
 #include <memory>
-#include <CValue.h>
-#include <COperator.h>
-#include <COperand.h>
+#include "CValue.h"
+#include "COperator.h"
+#include "COperand.h"
 using namespace std;
 
 namespace SSARI {

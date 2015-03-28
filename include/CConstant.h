@@ -8,7 +8,7 @@
 #ifndef INCLUDE_BOOLLOGIC_CCONSTANT_H_
 #define INCLUDE_BOOLLOGIC_CCONSTANT_H_
 #include <string>
-#include <COperand.h>
+#include "COperand.h"
 using std::string;
 namespace SSARI {
 
