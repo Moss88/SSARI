@@ -7,7 +7,7 @@
 
 #include <CConstant.h>
 
-namespace BFAST {
+namespace SSARI {
 
 CConstant::CConstant(string val) {
 	this->value = val;
@@ -27,4 +27,4 @@ CConstant::~CConstant() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */

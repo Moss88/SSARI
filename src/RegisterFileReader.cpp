@@ -3,7 +3,7 @@
 
 using std::cout;
 using std::endl;
-namespace BFAST {
+namespace SSARI {
 
 RegisterFileReader::RegisterFileReader()
 {

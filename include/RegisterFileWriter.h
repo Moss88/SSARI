@@ -2,7 +2,7 @@
 #define REGISTERFILEWRITER
 
 #include <RegisterFile.h>
-namespace BFAST {
+namespace SSARI {
 
 class RegisterFileWriter {
 public:

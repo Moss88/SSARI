@@ -1,6 +1,6 @@
 #include <RegisterFileReader.h>
 #include "gtest/gtest.h"
-using namespace BFAST;
+using namespace SSARI;
 TEST(RegisterFileReader, ReadXMLFile) {
     RegisterFile rf;
     RegisterFileReader rfReader;

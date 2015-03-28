@@ -2,7 +2,7 @@
 #include <libxml++/document.h>
 
 using namespace xmlpp;
-namespace BFAST {
+namespace SSARI {
 
 RegisterFileWriter::RegisterFileWriter() {
 

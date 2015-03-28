@@ -8,7 +8,7 @@
 #include <COperand.h>
 #include <sstream>
 using std::stringstream;
-namespace BFAST {
+namespace SSARI {
 
 COperand::COperand() {}
 
@@ -17,4 +17,4 @@ COperand::~COperand() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */

@@ -12,7 +12,7 @@ using xmlpp::Element;
 using xmlpp::Node;
 using namespace std;
 
-namespace BFAST {
+namespace SSARI {
 
 class RegisterFileReader
 {

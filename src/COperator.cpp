@@ -7,7 +7,7 @@
 
 #include <COperator.h>
 
-namespace BFAST {
+namespace SSARI {
 
 COperator::COperator(string op) : op(op){
 }
@@ -29,4 +29,4 @@ void COperator::writeXml(xmlpp::Node *parent, string indentation) const {
 COperator::~COperator() {
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */

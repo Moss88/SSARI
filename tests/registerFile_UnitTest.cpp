@@ -19,7 +19,7 @@
 #include <iostream>
 
 #include <RegisterFile.h>
-using namespace BFAST;
+using namespace SSARI;
 using std::cout;
 using std::endl;
 

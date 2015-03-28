@@ -14,7 +14,7 @@
 #include <COperand.h>
 using namespace std;
 
-namespace BFAST {
+namespace SSARI {
 
 class Constraint : public CValue {
 public:
@@ -29,6 +29,6 @@ private:
 	vector<shared_ptr<CValue> > operands;
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* SRC_BOOLLOGIC_CONSTRAINT_H_ */

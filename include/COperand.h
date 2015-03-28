@@ -11,7 +11,7 @@
 #include <CValue.h>
 
 using std::string;
-namespace BFAST {
+namespace SSARI {
 // Immutable Class
 class COperand : public CValue {
 public:
@@ -22,6 +22,6 @@ public:
 	virtual ~COperand();
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* SRC_BOOLLOGIC_COPERAND_H_ */

@@ -8,7 +8,7 @@
 #ifndef INCLUDE_BOOLLOGIC_CVAR_H_
 #define INCLUDE_BOOLLOGIC_CVAR_H_
 #include <COperand.h>
-namespace BFAST {
+namespace SSARI {
 
 class CVar : public COperand {
 public:
@@ -27,6 +27,6 @@ private:
 	int idx;
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* INCLUDE_BOOLLOGIC_CVAR_H_ */

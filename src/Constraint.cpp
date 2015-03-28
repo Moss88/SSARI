@@ -10,7 +10,7 @@
 #include <libxml++/document.h>
 using namespace xmlpp;
 
-namespace BFAST {
+namespace SSARI {
 
 Constraint::Constraint(COperator op) : op(op) {
 }
@@ -53,4 +53,4 @@ Constraint::~Constraint() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */

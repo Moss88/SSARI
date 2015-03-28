@@ -8,7 +8,7 @@
 #ifndef SRC_BOOLLOGIC_COPERATOR_H_
 #define SRC_BOOLLOGIC_COPERATOR_H_
 #include <CValue.h>
-namespace BFAST {
+namespace SSARI {
 
 class COperator : public CValue {
 public:
@@ -22,6 +22,6 @@ private:
 	string op;
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* SRC_BOOLLOGIC_COPERATOR_H_ */

@@ -7,7 +7,7 @@
 
 #include <CValue.h>
 
-namespace BFAST {
+namespace SSARI {
 
 CValue::CValue() {
 	// TODO Auto-generated constructor stub
@@ -18,4 +18,4 @@ CValue::~CValue() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */

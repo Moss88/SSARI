@@ -15,7 +15,7 @@ using xmlpp::Node;
 
 
 using std::string;
-namespace BFAST {
+namespace SSARI {
 
 class CValue {
 public:
@@ -25,6 +25,6 @@ public:
 	virtual ~CValue();
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* SRC_BOOLLOGIC_CVALUE_H_ */

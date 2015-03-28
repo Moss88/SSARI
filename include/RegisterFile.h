@@ -21,7 +21,7 @@ using std::endl;
 using std::string;
 using std::map;
 using std::cout;
-namespace BFAST {
+namespace SSARI {
 
 class RegisterFile {
 public:
@@ -65,6 +65,6 @@ protected:
 
 
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* TOOL_INCLUDE_IRNAV_REGISTERFILE_H_ */

@@ -10,7 +10,7 @@
 #include <string>
 #include <COperand.h>
 using std::string;
-namespace BFAST {
+namespace SSARI {
 
 class CConstant : public COperand {
 public:
@@ -22,6 +22,6 @@ private:
 	string value;
 };
 
-} /* namespace BFAST */
+} /* namespace SSARI */
 
 #endif /* INCLUDE_BOOLLOGIC_CCONSTANT_H_ */

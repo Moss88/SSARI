@@ -3,7 +3,7 @@
 
 #include "gtest/gtest.h"
 
-using namespace BFAST;
+using namespace SSARI;
 TEST(RegisterFileWriter, WriteXMLFile) {
 
     RegisterFileWriter rfWriter;

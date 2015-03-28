@@ -8,7 +8,7 @@
 #include <CVar.h>
 #include <sstream>
 using std::stringstream;
-namespace BFAST {
+namespace SSARI {
 
 CVar::CVar(string name, string funcName, int idx): name(name), funcName(funcName), idx(idx) {}
 CVar::CVar(const CVar& var): name(var.getName()), funcName(var.getFuncName()), idx(var.getIndex()) {}
@@ -53,4 +53,4 @@ CVar::~CVar() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace BFAST */
+} /* namespace SSARI */
