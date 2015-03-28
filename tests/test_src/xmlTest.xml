@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Register_File SYSTEM "regFile.dtd" [
+<!ENTITY xml "Extensible Markup Language">
+]>
+<RegisterFile>
+<Register name="x">
+	<Constraint>
+		<COperator operator="="/>
+		<CConstant value="6"/>
+	</Constraint>
+</Register>
+<Register name="y">
+	<Constraint>
+		<COperator operator="="/>
+		<CConstant value="4"/>
+	</Constraint>
+</Register>
+<Register name="z">
+	<Constraint>
+		<COperator operator="+"/>
+		<CVar name="z" funcName="" idx="0"/>
+		<CVar name="y" funcName="" idx="0"/>
+	</Constraint>
+</Register>
+</RegisterFile>
