@@ -15,4 +15,5 @@ add_library(ssari ${PROJECT_SOURCES})
 # Link against LLVM libraries
 target_link_libraries(ssari xml++-2.6 xml2 glibmm-2.4 gobject-2.0 sigc-2.0 glib-2.0)
 
+install(TARGETS ssari DESTINATION /usr/lib)
 
