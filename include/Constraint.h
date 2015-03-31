@@ -23,6 +23,8 @@ public:
 	COperator getOperator() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	string toString() const;
+    const vector<shared_ptr<CValue> >::const_iterator cbegin() const;
+    const vector<shared_ptr<CValue> >::const_iterator cend() const;
 	virtual ~Constraint();
 private:
 	const COperator op;

@@ -10,6 +10,6 @@
 #include "RegisterFile.h"
 #include "RegisterFileReader.h"
 #include "RegisterFileWriter.h"
-//namespace SSARI {}
+
 #endif // SSARI
 

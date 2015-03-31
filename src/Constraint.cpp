@@ -48,6 +48,14 @@ COperator Constraint::getOperator() const {
 	return this->op;
 }
 
+const vector<shared_ptr<CValue> >::const_iterator Constraint::cbegin() const {
+    return operands.cbegin();
+}
+
+const vector<shared_ptr<CValue> >::const_iterator Constraint::cend() const {
+    return operands.cend();
+}
+
 
 Constraint::~Constraint() {
 	// TODO Auto-generated destructor stub
