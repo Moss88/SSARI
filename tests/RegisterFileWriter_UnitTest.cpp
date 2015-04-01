@@ -1,8 +1,9 @@
 #include <RegisterFileWriter.h>
 #include <CConstant.h>
-
+#include <string>
+#include <fstream>
 #include "gtest/gtest.h"
-
+using namespace std;
 using namespace SSARI;
 TEST(RegisterFileWriter, WriteXMLFile) {
     RegisterFileWriter rfWriter;
@@ -25,5 +26,22 @@ TEST(RegisterFileWriter, WriteXMLFile) {
     c3.addOperand(make_shared<CVar>(var2));
     r.setVar(var, make_shared<Constraint>(c3));
 
-    rfWriter.writeFile("./test_src/xmlTest.xml", r);
+    rfWriter.writeFile("./test_src/xmlTest1.xml", r);
+
+
+    ifstream goldF("./test_src/xmlTest.xml"), testF("./test_src/xmlTest1.xml");
+    EXPECT_EQ(goldF.is_open(), true);
+    EXPECT_EQ(testF.is_open(), true);
+    while(goldF.good() && testF.good())
+    {
+        string gLine, tLine;
+        getline(goldF, gLine);
+        getline(testF, tLine);
+
+        EXPECT_EQ(gLine, tLine);
+        EXPECT_EQ(testF.good(), goldF.good());
+    }
+
+    goldF.close();
+    testF.close();
 }
