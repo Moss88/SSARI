@@ -10,6 +10,8 @@
 #include "RegisterFile.h"
 #include "RegisterFileReader.h"
 #include "RegisterFileWriter.h"
-
+#include "SymbolicVar.h"
+#include "ConstraintProcessor.h"
+#include "CVarMath.h"
 #endif // SSARI
 

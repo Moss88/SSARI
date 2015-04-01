@@ -13,6 +13,7 @@ class ConstraintProcessor
 public:
     ConstraintProcessor(CVarMath *math);
     bool satisfyConstaint(const shared_ptr<Constraint> constraint, RegisterFile &rf);
+    shared_ptr<SymbolicVar> genConstraint(const shared_ptr<Constraint> constaint, RegisterFile &rf);
     ~ConstraintProcessor();
 
 private:

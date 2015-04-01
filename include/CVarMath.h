@@ -30,15 +30,15 @@ public:
     // Logical Operations
     virtual shared_ptr<SymbolicVar>  logOr(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
     virtual shared_ptr<SymbolicVar>  logAnd(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
-    virtual shared_ptr<SymbolicVar>  logNot(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
+    virtual shared_ptr<SymbolicVar>  logNot(shared_ptr<SymbolicVar> op) = 0;
 
     // Boolean Operatiosn
     virtual shared_ptr<SymbolicVar>  boolOr(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
     virtual shared_ptr<SymbolicVar>  boolAnd(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
-    virtual shared_ptr<SymbolicVar>  boolNot(shared_ptr<SymbolicVar> opA, shared_ptr<SymbolicVar> opB) = 0;
+    virtual shared_ptr<SymbolicVar>  boolNot(shared_ptr<SymbolicVar> op) = 0;
 
     // Is Satisfiable
-    virtual bool isSat(SymbolicVar expr) = 0;
+    virtual bool isSat(shared_ptr<SymbolicVar> expr) = 0;
 
     // Clears Any History
     virtual void clear() = 0;

@@ -18,7 +18,7 @@
 <Register name="z">
 	<Constraint>
 		<COperator operator="+"/>
-		<CVar name="z" funcName="" idx="0"/>
+		<CVar name="x" funcName="" idx="0"/>
 		<CVar name="y" funcName="" idx="0"/>
 	</Constraint>
 </Register>

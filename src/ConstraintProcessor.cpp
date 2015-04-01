@@ -9,10 +9,8 @@ ConstraintProcessor::ConstraintProcessor(CVarMath *math) : mathProc(math)
 
 
 bool ConstraintProcessor::satisfyConstaint(const shared_ptr<Constraint> constraint, RegisterFile &rf) {
-    // Temp add to register file
-    CVar constraintVar("const_8465486");
-    rf.setVar(constraintVar, constraint);
-    shared_ptr<SymbolicVar> sVar = this->processConstraint(constraintVar, rf);
+
+    shared_ptr<SymbolicVar> sVar = this->genConstraint(constraint, rf);
     if(!sVar)
         throw runtime_error("Satifying Equation was NULL");
 
@@ -21,13 +19,21 @@ bool ConstraintProcessor::satisfyConstaint(const shared_ptr<Constraint> constrai
 
 }
 
+shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(const shared_ptr<Constraint> constraint, RegisterFile &rf) {
+    // Temp add to register file
+    CVar constraintVar("const_8465486");
+    rf.setVar(constraintVar, constraint);
+    shared_ptr<SymbolicVar> sVar = this->processConstraint(constraintVar, rf);
+
+    return sVar;
+}
+
 
 shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, RegisterFile &rf) {
     // Determine if function is already set
     auto iter = this->funcFile.find(var);
     if(iter != funcFile.end())
         return iter->second;
-
     // Fetch Constraint Associated with variable
     shared_ptr<Constraint> constraint = rf.getVar(var);
     if(!constraint)
@@ -44,11 +50,15 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
             symVar = this->processConstraint(*opVar, rf);
         else if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter))
             symVar = this->mathProc->get(opVar);
-
-        if(!symVar)
-            operands.push_front(symVar);
         else
+            throw runtime_error((*iter)->toString() + " unknown type");
+
+        if(symVar == nullptr)
             throw runtime_error((*iter)->toString() + " could not be found in register file");
+
+        operands.push_front(symVar);
+
+
     }
 
 
@@ -60,7 +70,6 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         // Determine if set to constant or another var
         if(operands.size() != 1)
             throw runtime_error(var.toString() + " = operation has too many operands");
-
         outSymbol = this->mathProc->set(operands.front());
     }
     else
@@ -93,20 +102,23 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
             outSymbol = this->mathProc->logOr(operands.front(), operands.back());
         else if(op == "&&")
             outSymbol = this->mathProc->logAnd(operands.front(), operands.back());
+        // This is currently incorrect
         else if(op == "!")
-            outSymbol = this->mathProc->logNot(operands.front(), operands.back());
+            outSymbol = this->mathProc->logNot(operands.front());
         else if(op == "|")
             outSymbol = this->mathProc->boolOr(operands.front(), operands.back());
         else if(op == "&")
             outSymbol = this->mathProc->boolAnd(operands.front(), operands.back());
+        // This is also incorrect, constaints can be unary
         else if(op == "~")
-            outSymbol = this->mathProc->boolNot(operands.front(), operands.back());
+            outSymbol = this->mathProc->boolNot(operands.front());
         else
             throw runtime_error("Invalid Operator: " + op);
     }
 
     // Update Function and return
     this->funcFile[var] = outSymbol;
+
     return outSymbol;
 
 }
