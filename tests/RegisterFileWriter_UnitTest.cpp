@@ -5,7 +5,6 @@
 
 using namespace SSARI;
 TEST(RegisterFileWriter, WriteXMLFile) {
-
     RegisterFileWriter rfWriter;
     RegisterFile r;
 
@@ -27,5 +26,4 @@ TEST(RegisterFileWriter, WriteXMLFile) {
     r.setVar(var, make_shared<Constraint>(c3));
 
     rfWriter.writeFile("./test_src/xmlTest.xml", r);
-
 }

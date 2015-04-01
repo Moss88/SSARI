@@ -105,7 +105,6 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
 
     //Walk the tree:
     const xmlpp::Element* element = parser.get_document()->get_root_node();
-    cout << "Root Element Name:" << element->get_name() << endl;
     if(element->get_name() != "RegisterFile" )
     {
         error += "File is not a register file. ";
