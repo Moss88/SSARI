@@ -9,7 +9,4 @@ TEST(RegisterFileReader, ReadXMLFile) {
     if(rfReader.fail())
         cout << rfReader.getError() << endl;
     EXPECT_EQ(rfReader.fail(), false);
-    cout << rf.dumpRegister() << endl;
-
-
 }
