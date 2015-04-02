@@ -43,7 +43,6 @@ public:
 
 	string dumpRegister() {
 		stringstream ss;
-		auto iter = registers.begin();
 		for(auto iter = registers.begin(); iter != registers.end(); iter++)
 			ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second->toString() << endl;
 		return ss.str();
