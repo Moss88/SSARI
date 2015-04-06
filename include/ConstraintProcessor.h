@@ -1,7 +1,7 @@
 #ifndef CONSTRAINTPROCESSOR_H
 #define CONSTRAINTPROCESSOR_H
 
-#include <SSARI/ssari.h>
+#include "ssari.h"
 #include "CVarMath.h"
 using SSARI::CVar;
 using SSARI::Constraint;

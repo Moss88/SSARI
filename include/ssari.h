@@ -13,5 +13,9 @@
 #include "SymbolicVar.h"
 #include "ConstraintProcessor.h"
 #include "CVarMath.h"
+#include "BoolBinary.h"
+#include "BoolUnary.h"
+#include "BoolAnd.h"
+#include "BoolOr.h"
 #endif // SSARI
 
