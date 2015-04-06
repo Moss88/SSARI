@@ -1,6 +1,7 @@
 #include "ssari.h"
+#include "BoolTseitin.h"
 #include "gtest/gtest.h"
-
+#include <memory>
 using namespace SSARI;
 using namespace std;
 
@@ -18,19 +19,22 @@ TEST(BoolFunction, ToString) {
     shared_ptr<BoolAnd> eq1 = shared_ptr<BoolAnd>(new BoolAnd(a, b));
 
     // (C | D)
-    shared_ptr<BoolBinary> eq2 = shared_ptr<BoolBinary>(new BoolBinary("|", c, d));
+    shared_ptr<BoolOr> eq2 = shared_ptr<BoolOr>(new BoolOr(c, d));
 
     // EQ2 & E
-    shared_ptr<BoolBinary> eq3 = shared_ptr<BoolBinary>(new BoolBinary("&", eq2, e));
+    shared_ptr<BoolAnd> eq3 = shared_ptr<BoolAnd>(new BoolAnd(eq2, e));
 
     // EQ1 | EQ3
-    shared_ptr<BoolBinary> finalEq = shared_ptr<BoolBinary>(new BoolBinary("|", eq1, eq3));
+    shared_ptr<BoolOr> finalEq = shared_ptr<BoolOr>(new BoolOr(eq1, eq3));
     EXPECT_EQ(finalEq->toString(), "((a & b) | ((c | d) & e))");
 
 
     // With Demorgan and Unary Operator
     shared_ptr<BoolUnary> demorg = shared_ptr<BoolUnary>(new BoolUnary("~", finalEq));
     EXPECT_EQ(demorg->toString(), "~((a & b) | ((c | d) & e))");
+
+    shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
+    cout << ts->toString() << endl;
 }
 
 

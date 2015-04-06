@@ -1,6 +1,5 @@
 #ifndef CVARMATH_H
 #define CVARMATH_H
-#include <SSARI/ssari.h>
 #include "SymbolicVar.h"
 #include <memory>
 using std::shared_ptr;

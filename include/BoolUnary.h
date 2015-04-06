@@ -13,7 +13,7 @@ namespace SSARI {
 class BoolUnary : public BoolVar {
 public:
     BoolUnary(string op, shared_ptr<BoolVar> operand) : op(op), operand(operand) {}
-    string toString() const { if(operand) return op + operand->toString();}
+    string toString() const { return op + operand->toString();}
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
 
 private:
