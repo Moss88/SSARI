@@ -16,7 +16,7 @@ public:
     string toString() const { return op + operand->toString();}
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
 
-private:
+protected:
     string op;
     shared_ptr<BoolVar> operand;
 };

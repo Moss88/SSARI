@@ -1,6 +1,6 @@
 #ifndef BOOLBINARY_H
 #define BOOLBINARY_H
-
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
@@ -9,6 +9,9 @@
 using std::shared_ptr;
 using std::string;
 using std::vector;
+using std::cout;
+using std::endl;
+
 
 namespace SSARI {
 
@@ -24,6 +27,12 @@ public:
     }
 
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
+
+    string toDimacs(string dimacLine, int &refCnt) {
+        for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)
+            dimacLine = (*iter)->toDimacs(dimacLine, refCnt);
+        return dimacLine;
+    }
 
 protected:
     string op;

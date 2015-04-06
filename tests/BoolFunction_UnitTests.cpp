@@ -33,8 +33,12 @@ TEST(BoolFunction, ToString) {
     shared_ptr<BoolUnary> demorg = shared_ptr<BoolUnary>(new BoolUnary("~", finalEq));
     EXPECT_EQ(demorg->toString(), "~((a & b) | ((c | d) & e))");
 
+    // Convert to Tseitin
     shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
-    cout << ts->toString() << endl;
+    ts->writeToDimacs("./test_src/outDimacs.cnf");
+
+
+
 }
 
 

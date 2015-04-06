@@ -19,6 +19,7 @@ public:
     void addOperand(shared_ptr<BoolVar> op);
     string toString() const ;
     void writeXml(xmlpp::Node *parent, string indentation = "") const ;
+    bool writeToDimacs(string filePath);
 
 private:
     vector<shared_ptr<BoolVar> > operands;
