@@ -3,13 +3,15 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <libxml++/document.h>
 #include "./BoolVar.h"
 
 using std::shared_ptr;
 using std::string;
 using std::vector;
 
+namespace xmlpp {
+    class Node;
+}
 
 
 namespace SSARI {

@@ -6,7 +6,8 @@
  */
 
 #include <COperator.h>
-
+#include <libxml++/document.h>
+using xmlpp::Element;
 namespace SSARI {
 
 COperator::COperator(string op) : op(op){

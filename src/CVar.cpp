@@ -7,7 +7,10 @@
 
 #include <CVar.h>
 #include <sstream>
+#include <libxml++/document.h>
+using namespace xmlpp;
 using std::stringstream;
+
 namespace SSARI {
 
 CVar::CVar(string name, string funcName, int idx): name(name), funcName(funcName), idx(idx) {}

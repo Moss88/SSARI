@@ -6,7 +6,8 @@
  */
 
 #include <CConstant.h>
-
+#include <libxml++/document.h>
+using xmlpp::Element;
 namespace SSARI {
 
 CConstant::CConstant(string val) {

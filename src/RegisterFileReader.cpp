@@ -1,5 +1,11 @@
 #include <RegisterFileReader.h>
 #include <CConstant.h>
+#include <libxml++/libxml++.h>
+#include <libxml++/attribute.h>
+using xmlpp::Attribute;
+using xmlpp::Element;
+using xmlpp::Node;
+
 
 using std::cout;
 using std::endl;

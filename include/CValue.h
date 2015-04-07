@@ -9,10 +9,11 @@
 #define SRC_BOOLLOGIC_CVALUE_H_
 
 #include <string>
-#include <libxml++/document.h>
-using xmlpp::Element;
-using xmlpp::Node;
 
+namespace xmlpp {
+	class Element;
+	class Node;
+}
 
 using std::string;
 namespace SSARI {
