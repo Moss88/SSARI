@@ -29,18 +29,19 @@ void BoolTseitin::writeXml(xmlpp::Node *parent, string indentation) const {}
 
 bool BoolTseitin::writeToDimacs(string filePath) {
 
-    int refCnt = 0;
+    int refCnt = 1;
     int lineCnt = 1;
     string dimacs;
 
     for(auto iter  = this->operands.begin(); iter != this->operands.end(); iter++)
     {
         string line;
+        lineCnt++;
         line += (*iter)->toDimacs(line, refCnt);
-        dimacs += to_string(lineCnt++) + " " + line + "\n";
+        dimacs += line + "0\n";
     }
     // Add Header
-    string header = "c Autogen output\np " + to_string(refCnt) + " " + to_string(lineCnt - 1) + "\n";
+    string header = "c Autogen output\np cnf " + to_string(refCnt + 1) + " " + to_string(lineCnt - 1) + "\n";
     string file = header + dimacs;
 
     // Write to File
