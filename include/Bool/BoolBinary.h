@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "BoolVar.h"
+#include "Bool/BoolVar.h"
 
 using std::shared_ptr;
 using std::string;
@@ -21,6 +21,7 @@ public:
         operands.push_back(opA);
         operands.push_back(opB);
     }
+
 
     string toString() const {
         return "(" + operands[0]->toString() + " " + op + " " + operands[1]->toString() + ")";

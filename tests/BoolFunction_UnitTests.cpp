@@ -1,10 +1,27 @@
 #include "ssari.h"
-#include "BoolTseitin.h"
 #include "gtest/gtest.h"
 #include <memory>
 using namespace SSARI;
 using namespace std;
 
+
+
+TEST(BoolFunction, TestOperators) {
+    // Impelement (A & B) | ((C | D) & E)
+   BoolFunc a("a");
+   BoolFunc b("b");
+   BoolFunc c("c");
+   BoolFunc eq1 = a | b;
+   EXPECT_EQ(eq1.toString(), "(a | b)");
+
+   BoolFunc eq2 = eq1 & c;
+   EXPECT_EQ(eq2.toString(), "((a | b) & c)");
+
+
+   BoolFunc eq3 = !eq2;
+   EXPECT_EQ(eq3.toString(), "~((a | b) & c)");
+
+}
 
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)

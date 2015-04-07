@@ -1,5 +1,6 @@
-#include "BoolVar.h"
-#include "BoolTseitin.h"
+#include "Bool/BoolVar.h"
+#include "Bool/BoolTseitin.h"
+#include "Bool/BoolOr.h"
 #include <string>
 #include <iostream>
 using std::cout;
@@ -54,5 +55,6 @@ void BoolVar::setRef(int num) {
 string BoolVar::getName() const {
     return this->name;
 }
+
 
 }

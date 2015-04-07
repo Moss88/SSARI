@@ -1,7 +1,7 @@
 #include <string>
-#include "BoolOr.h"
-#include "BoolNot.h"
-#include "BoolTseitin.h"
+#include "Bool/BoolOr.h"
+#include "Bool/BoolNot.h"
+#include "Bool/BoolTseitin.h"
 using namespace std;
 namespace SSARI {
 

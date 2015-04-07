@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include "BoolVar.h"
+#include "Bool/BoolVar.h"
 
 using std::shared_ptr;
 using std::string;

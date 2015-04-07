@@ -2,7 +2,7 @@
 #define BOOLNOT_H
 #include <string>
 
-#include "BoolUnary.h"
+#include "Bool/BoolUnary.h"
 using std::to_string;
 namespace SSARI {
 

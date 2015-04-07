@@ -1,5 +1,5 @@
-#include "BoolTseitin.h"
-#include "BoolVar.h"
+#include "Bool/BoolTseitin.h"
+#include "Bool/BoolVar.h"
 #include <string>
 #include <fstream>
 using std::string;

@@ -1,7 +1,7 @@
 #ifndef BOOLAND_H
 #define BOOLAND_H
 
-#include "BoolBinary.h"
+#include "Bool/BoolBinary.h"
 
 
 namespace SSARI {

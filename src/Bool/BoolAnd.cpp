@@ -1,9 +1,9 @@
 #include <string>
 
-#include "BoolTseitin.h"
-#include "BoolAnd.h"
-#include "BoolNot.h"
-#include "BoolOr.h"
+#include "Bool/BoolTseitin.h"
+#include "Bool/BoolAnd.h"
+#include "Bool/BoolNot.h"
+#include "Bool/BoolOr.h"
 
 using namespace std;
 
