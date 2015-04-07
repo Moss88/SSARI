@@ -1,10 +1,21 @@
 #include "ssari.h"
-#include "BoolTseitin.h"
 #include "gtest/gtest.h"
 #include <memory>
 using namespace SSARI;
 using namespace std;
 
+
+
+TEST(BoolFunction, TestOperators) {
+    // Impelement (A & B) | ((C | D) & E)
+   BoolFunc a("a");
+   BoolFunc b("b");
+
+
+
+
+
+}
 
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)
