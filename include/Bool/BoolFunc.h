@@ -1,7 +1,7 @@
 
 #include <memory>
-#include <Bool/BoolVar.h>
-#include <Bool/BoolTseitin.h>
+#include "./BoolVar.h"
+#include "./BoolTseitin.h"
 
 namespace SSARI {
 

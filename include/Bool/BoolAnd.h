@@ -1,10 +1,12 @@
 #ifndef BOOLAND_H
 #define BOOLAND_H
 
-#include "Bool/BoolBinary.h"
 
 
 namespace SSARI {
+
+class BoolVar;
+class BoolBinary;
 
 class BoolAnd: public BoolBinary {
 public:

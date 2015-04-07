@@ -1,7 +1,7 @@
 #ifndef BOOLOR_H
 #define BOOLOR_H
 
-#include "Bool/BoolBinary.h"
+#include "./BoolBinary.h"
 
 namespace SSARI {
 

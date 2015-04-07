@@ -1,8 +1,9 @@
 #ifndef BOOLVAR_H
 #define BOOLVAR_H
 #include <memory>
-#include "CValue.h"
-//#include "BoolTseitin.h"
+#include "../CValue.h"
+
+
 using std::make_shared;
 using std::shared_ptr;
 namespace SSARI {

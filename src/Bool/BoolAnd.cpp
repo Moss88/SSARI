@@ -1,5 +1,5 @@
 #include <string>
-
+#include "Bool/BoolBinary.h"
 #include "Bool/BoolTseitin.h"
 #include "Bool/BoolAnd.h"
 #include "Bool/BoolNot.h"
