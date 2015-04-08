@@ -3,7 +3,7 @@
 #include "Bool/BoolVar.h"
 
 namespace SSARI {
-BoolBinary::BoolBinary(string op, shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB) : op(op) {
+BoolBinary::BoolBinary(string op, shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB) : op(op) {
     operands.push_back(opA);
     operands.push_back(opB);
 }
@@ -14,6 +14,12 @@ string BoolBinary::toString() const {
 }
 
 void BoolBinary::writeXml(xmlpp::Node *parent, string indentation) const {}
+
+void BoolBinary::clearRef(){
+    this->operands[0]->clearRef();
+    this->operands[1]->clearRef();
+}
+
 
 string BoolBinary::toDimacs(string dimacLine, int &refCnt) {
     for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)

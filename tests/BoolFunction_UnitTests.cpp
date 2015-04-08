@@ -23,6 +23,50 @@ TEST(BoolFunction, TestOperators) {
 
 }
 
+
+TEST(BoolFunction, TestDoubleNegation) {
+    // Impelement (A & B) | ((C | D) & E)
+   BoolFunc a("a");
+   BoolFunc nA = !a;
+   BoolFunc nnA = !nA;
+
+   EXPECT_EQ(nnA.toString(), "a");
+
+   BoolFunc b("b");
+   BoolFunc eq1 = a & b;
+   BoolFunc nEq1 = !eq1;
+   BoolFunc nnEq1 = !nEq1;
+
+   EXPECT_EQ(nnEq1.toString(), "(a & b)");
+}
+
+TEST(BoolFunction, Tseitin) {
+   BoolFunc a("a");
+   BoolFunc b("b");
+   BoolFunc c("c");
+
+   BoolFunc unSat1 = a & !a;
+   shared_ptr<BoolTseitin> ts = unSat1.getTseitin();
+   EXPECT_EQ(ts->isSat(), false);
+
+   BoolFunc unSat2 = (!(a | b)) & a;
+   ts = unSat2.getTseitin();
+   EXPECT_EQ(ts->isSat(), false);
+
+   BoolFunc sat1 = a & b;
+   ts = sat1.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
+
+   BoolFunc sat2 = (!(a & b)) & a;
+   ts = sat2.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
+
+   BoolFunc sat3 = (a & b) & (a & !c);
+   ts = sat3.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
+}
+
+/*
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)
     shared_ptr<BoolVar> a = shared_ptr<BoolVar>(new BoolVar("a"));
@@ -49,14 +93,13 @@ TEST(BoolFunction, ToString) {
     // With Demorgan and Unary Operator
     shared_ptr<BoolUnary> demorg = shared_ptr<BoolUnary>(new BoolUnary("~", finalEq));
     EXPECT_EQ(demorg->toString(), "~((a & b) | ((c | d) & e))");
-
+/*
     // Convert to Tseitin
     shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
     ts->writeToDimacs("./test_src/outDimacs.cnf");
+*/
 
-
-
-}
+//}
 
 
 

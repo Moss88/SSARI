@@ -1,15 +1,14 @@
 #ifndef BOOLVAR_H
 #define BOOLVAR_H
 #include <memory>
-#include "../CValue.h"
-
+#include "./BoolValue.h"
 
 using std::make_shared;
 using std::shared_ptr;
 namespace SSARI {
 
 class BoolTseitin;
-class BoolVar : public CValue {
+class BoolVar : public BoolValue {
 public:
     BoolVar(string name = "");
     void setName(string name);
@@ -19,12 +18,11 @@ public:
 
     virtual string toString() const;
     virtual void writeXml(xmlpp::Node *parent, string indentation = "") const;
-    shared_ptr<BoolTseitin> getTseitin();
-    virtual shared_ptr<BoolVar> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
     virtual string toDimacs(std::string dimacLine, int &refCnt);
 
 protected:
-
+    void clearRef();
+    virtual shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
     static string tseitinVarName();
 
 private:

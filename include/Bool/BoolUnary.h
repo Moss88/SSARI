@@ -3,22 +3,23 @@
 
 #include <memory>
 #include <string>
-#include "./BoolVar.h"
+#include "./BoolValue.h"
 
 using std::shared_ptr;
 using std::string;
 
 namespace SSARI {
 
-class BoolUnary : public BoolVar {
+class BoolUnary : public BoolValue {
 public:
-    BoolUnary(string op, shared_ptr<BoolVar> operand) : op(op), operand(operand) {}
+    BoolUnary(string op, shared_ptr<BoolValue> operand) : op(op), operand(operand) {}
     string toString() const { return op + operand->toString();}
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
 
 protected:
+    void clearRef() {operand->clearRef();}
     string op;
-    shared_ptr<BoolVar> operand;
+    shared_ptr<BoolValue> operand;
 };
 
 }

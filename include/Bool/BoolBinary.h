@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "./BoolVar.h"
+#include "./BoolValue.h"
 
 using std::shared_ptr;
 using std::string;
@@ -15,16 +15,17 @@ namespace xmlpp {
 
 
 namespace SSARI {
-class BoolBinary : public BoolVar {
+class BoolBinary : public BoolValue {
 public:
-    BoolBinary(string op, shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB);
+    BoolBinary(string op, shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB);
     string toString() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
     string toDimacs(string dimacLine, int &refCnt);
     ~BoolBinary();
 protected:
+    void clearRef();
     string op;
-    vector< shared_ptr<BoolVar> > operands;
+    vector< shared_ptr<BoolValue> > operands;
 };
 
 }
