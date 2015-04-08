@@ -4,26 +4,26 @@
 
 #include <vector>
 #include <memory>
-#include "../CValue.h"
+#include <string>
 
+using std::string;
 using std::vector;
 using std::shared_ptr;
 
 
 
 namespace SSARI {
-class BoolVar;
-class BoolTseitin : public CValue {
+class BoolValue;
+class BoolTseitin {
 public:
     BoolTseitin();
-    void addOperand(shared_ptr<BoolVar> op);
+    void addOperand(shared_ptr<BoolValue> op);
     string toString() const ;
-    void writeXml(xmlpp::Node *parent, string indentation = "") const ;
     bool writeToDimacs(string filePath);
     bool isSat();
 
 private:
-    vector<shared_ptr<BoolVar> > operands;
+    vector<shared_ptr<BoolValue> > operands;
 };
 
 }

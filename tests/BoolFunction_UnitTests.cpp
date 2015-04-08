@@ -53,7 +53,7 @@ TEST(BoolFunction, Tseitin) {
    cout << ts->toString() << endl;
    EXPECT_EQ(ts->isSat(), false);
 }
-
+/*
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)
     shared_ptr<BoolVar> a = shared_ptr<BoolVar>(new BoolVar("a"));
@@ -87,7 +87,7 @@ TEST(BoolFunction, ToString) {
 */
 
 
-}
+//}
 
 
 

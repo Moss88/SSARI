@@ -10,9 +10,9 @@ using namespace std;
 
 namespace SSARI {
 
-BoolAnd::BoolAnd(shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB) : BoolBinary("&", opA, opB)  {    }
+BoolAnd::BoolAnd(shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB) : BoolBinary("&", opA, opB)  {    }
 
-shared_ptr<BoolVar> BoolAnd::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
+shared_ptr<BoolValue> BoolAnd::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
     cout << "Executed this:" << this->toString() << endl;
     cout << "Op2: " << this->operands[1]->toString() << endl;
     BoolFunc opA(this->operands[0]->toTseitin(tseitin, cnt));

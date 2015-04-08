@@ -3,7 +3,7 @@
 #include "Bool/BoolVar.h"
 
 namespace SSARI {
-BoolBinary::BoolBinary(string op, shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB) : op(op) {
+BoolBinary::BoolBinary(string op, shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB) : op(op) {
     operands.push_back(opA);
     operands.push_back(opB);
 }

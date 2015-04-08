@@ -20,5 +20,6 @@
 #include "Bool/BoolOr.h"
 #include "Bool/BoolNot.h"
 #include "Bool/BoolFunc.h"
+#include "Bool/BoolValue.h"
 #endif // SSARI
 

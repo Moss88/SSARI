@@ -7,8 +7,9 @@ namespace SSARI {
 
 class BoolOr: public BoolBinary {
 public:
-    BoolOr(shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB);
-    shared_ptr<BoolVar> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
+    BoolOr(shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB);
+protected:
+    shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
 
 };
 

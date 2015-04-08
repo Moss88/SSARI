@@ -2,6 +2,7 @@
 #include "Bool/BoolOr.h"
 #include "Bool/BoolAnd.h"
 #include "Bool/BoolNot.h"
+#include "Bool/BoolVar.h"
 #include <memory>
 using std::dynamic_pointer_cast;
 namespace SSARI {
@@ -12,7 +13,7 @@ BoolFunc::BoolFunc(string name) {
     bVar = shared_ptr<BoolVar>(new BoolVar(name));
 }
 
-BoolFunc::BoolFunc(shared_ptr<BoolVar> var) : bVar(var) {}
+BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
 
 
 BoolFunc BoolFunc::operator|(const BoolFunc& rhs) {
@@ -35,7 +36,7 @@ shared_ptr<BoolTseitin> BoolFunc::getTseitin() {
     return nullptr;
 }
 
-shared_ptr<BoolVar> BoolFunc::getBoolVar() {
+shared_ptr<BoolValue> BoolFunc::getBoolVar() {
     return this->bVar;
 }
 
@@ -43,12 +44,6 @@ bool BoolFunc::isValid() const {
     if(bVar)
         return true;
     return false;
-}
-
-string BoolFunc::getName() const {
-    if(bVar)
-        return bVar->getName();
-    return "";
 }
 
 string BoolFunc::toString() const {

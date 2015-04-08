@@ -1,5 +1,5 @@
 #include "Bool/BoolTseitin.h"
-#include "Bool/BoolVar.h"
+#include "Bool/BoolValue.h"
 #include <string>
 #include <fstream>
 using std::string;
@@ -12,7 +12,7 @@ namespace SSARI {
 BoolTseitin::BoolTseitin() {}
 
 
-void BoolTseitin::addOperand(shared_ptr<BoolVar> op) {
+void BoolTseitin::addOperand(shared_ptr<BoolValue> op) {
         operands.push_back(op);
 }
 
@@ -24,9 +24,6 @@ string BoolTseitin::toString() const {
         equation += (*iter)->toString();
     return equation;
 }
-
-void BoolTseitin::writeXml(xmlpp::Node *parent, string indentation) const {}
-
 
 bool BoolTseitin::writeToDimacs(string filePath) {
 

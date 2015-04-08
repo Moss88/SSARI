@@ -8,23 +8,20 @@ namespace SSARI {
 
 class BoolNot : public BoolUnary {
 public:
-    BoolNot(shared_ptr<BoolVar> operand) : BoolUnary("~", operand) {
-        std::cout << "Constructor Called on " << operand->getName() << std::endl;
+    BoolNot(shared_ptr<BoolValue> operand) : BoolUnary("~", operand) {
+        std::cout << "Constructor Called on " << operand->toString() << std::endl;
     }
 
-    shared_ptr<BoolVar> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-
+    shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
+        return nullptr;
     }
 
+    // This is a problem if it is a complex operand
     string toDimacs(std::string dimacLine, int &refCnt) {
-        if(this->operand->getRef() == -1)
-        {
-            std::cout << "Set Ref Count: " << this->operand->getName() << std::endl;
-            this->operand->setRef(refCnt++);
-        }
-        return dimacLine += "-" + to_string(this->operand->getRef()) + " ";
+        string opBuff = this->operand->toDimacs("opBuff""", refCnt);
+        return dimacLine += "-" + opBuff + " ";
     }
-    shared_ptr<BoolVar> getOperand(){
+    shared_ptr<BoolValue> getOperand(){
         return this->operand;
     }
 };

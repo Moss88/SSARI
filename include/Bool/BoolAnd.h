@@ -5,13 +5,13 @@
 
 namespace SSARI {
 
-class BoolVar;
+class BoolValue;
 class BoolBinary;
 
 class BoolAnd: public BoolBinary {
 public:
-    BoolAnd(shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB);
-    shared_ptr<BoolVar> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
+    BoolAnd(shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB);
+    shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
 };
 
 }
