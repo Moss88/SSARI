@@ -17,6 +17,7 @@ public:
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
 
 protected:
+    void clearRef() {operand->clearRef();}
     string op;
     shared_ptr<BoolValue> operand;
 };

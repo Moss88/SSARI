@@ -13,11 +13,8 @@ namespace SSARI {
 BoolAnd::BoolAnd(shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB) : BoolBinary("&", opA, opB)  {    }
 
 shared_ptr<BoolValue> BoolAnd::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-    cout << "Executed this:" << this->toString() << endl;
-    cout << "Op2: " << this->operands[1]->toString() << endl;
     BoolFunc opA(this->operands[0]->toTseitin(tseitin, cnt));
     BoolFunc opB(this->operands[1]->toTseitin(tseitin, cnt));
-    cout << "OpB: " <<  opB.toString() << endl;
 
     // Tseitin Vars
     BoolFunc tVar("T" + to_string(cnt++));
@@ -28,8 +25,6 @@ shared_ptr<BoolValue> BoolAnd::toTseitin(shared_ptr<BoolTseitin> tseitin, int &c
     BoolFunc eq2 = nTVar | opB;
     tseitin->addOperand(eq1.getBoolVar());  // ~x | a
     tseitin->addOperand(eq2.getBoolVar());  // ~x | b
-    cout << "EQ1: " << eq1.toString() << endl;
-    cout << "EQ2: " << eq1.toString() << endl;
 
     // a & b implies x
     BoolFunc nOpA = !opA;  // ~a

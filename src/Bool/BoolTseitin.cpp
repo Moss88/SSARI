@@ -2,6 +2,7 @@
 #include "Bool/BoolValue.h"
 #include <string>
 #include <fstream>
+
 using std::string;
 using std::ofstream;
 using std::to_string;
@@ -53,6 +54,10 @@ bool BoolTseitin::writeToDimacs(string filePath) {
 }
 
 bool BoolTseitin::isSat() {
+    // Clear Refs
+    for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)
+        (*iter)->clearRef();
+
     if(!this->writeToDimacs("outDimacs.cnf"))
         throw runtime_error("Failed to write Dimacs file");
 
@@ -61,7 +66,17 @@ bool BoolTseitin::isSat() {
     char buffer[256];
     FILE *fp =  popen("lingeling ./outDimacs.cnf", "r");
     while (fgets(buffer, 256, fp) != NULL)
-        printf("%s", buffer);
+    {
+        if(buffer[0] == 's')
+        {
+            string str(buffer);
+            int idx = str.find("UNSATISFIABLE");
+            if(idx == string::npos)
+                return true;
+            else
+                return false;
+        }
+    }
     status = pclose(fp);
     return true;
 }

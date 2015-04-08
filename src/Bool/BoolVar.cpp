@@ -2,14 +2,13 @@
 #include "Bool/BoolTseitin.h"
 #include "Bool/BoolOr.h"
 #include <string>
-#include <iostream>
-using std::cout;
-using std::endl;
+
 using namespace std;
 namespace SSARI {
 
 
 BoolVar::BoolVar(string name) : ref(-1), name(name) {}
+
 void BoolVar::setName(string name) {
     this->name = name;
 }
@@ -21,11 +20,14 @@ string BoolVar::toString() const {
 void BoolVar::writeXml(xmlpp::Node *parent, string indentation) const {
 }
 
+void BoolVar::clearRef() {
+    this->ref = -1;
+}
 
 
 
 shared_ptr<BoolValue> BoolVar::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-    return make_shared<BoolVar>(*this);
+    return shared_from_this();
 }
 
 string tseitinVarName() {
@@ -34,7 +36,6 @@ string tseitinVarName() {
 
 string BoolVar::toDimacs(string dimacLine, int &refCnt) {
     if(this->ref == -1){
-        cout << "Increased Reference: " << this->getName() << endl;
         this->ref = refCnt++;
     }
     return dimacLine + to_string(this->ref) + " ";

@@ -1,29 +1,22 @@
 #ifndef BOOLNOT_H
 #define BOOLNOT_H
 #include <string>
-#include <iostream>
+#include <memory>
+
 #include "./BoolUnary.h"
+
 using std::to_string;
+using std::dynamic_pointer_cast;
+using std::runtime_error;
+
 namespace SSARI {
 
 class BoolNot : public BoolUnary {
 public:
-    BoolNot(shared_ptr<BoolValue> operand) : BoolUnary("~", operand) {
-        std::cout << "Constructor Called on " << operand->toString() << std::endl;
-    }
-
-    shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-        return nullptr;
-    }
-
-    // This is a problem if it is a complex operand
-    string toDimacs(std::string dimacLine, int &refCnt) {
-        string opBuff = this->operand->toDimacs("opBuff""", refCnt);
-        return dimacLine += "-" + opBuff + " ";
-    }
-    shared_ptr<BoolValue> getOperand(){
-        return this->operand;
-    }
+    BoolNot(shared_ptr<BoolValue> operand);
+    shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
+    string toDimacs(std::string dimacLine, int &refCnt);
+    shared_ptr<BoolValue> getOperand();
 };
 
 }

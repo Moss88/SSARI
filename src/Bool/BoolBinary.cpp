@@ -15,6 +15,12 @@ string BoolBinary::toString() const {
 
 void BoolBinary::writeXml(xmlpp::Node *parent, string indentation) const {}
 
+void BoolBinary::clearRef(){
+    this->operands[0]->clearRef();
+    this->operands[1]->clearRef();
+}
+
+
 string BoolBinary::toDimacs(string dimacLine, int &refCnt) {
     for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)
         dimacLine = (*iter)->toDimacs(dimacLine, refCnt);

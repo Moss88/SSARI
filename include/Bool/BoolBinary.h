@@ -23,6 +23,7 @@ public:
     string toDimacs(string dimacLine, int &refCnt);
     ~BoolBinary();
 protected:
+    void clearRef();
     string op;
     vector< shared_ptr<BoolValue> > operands;
 };

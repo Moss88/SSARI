@@ -1,6 +1,6 @@
 #ifndef BOOLVAR_H
 #define BOOLVAR_H
-
+#include <memory>
 #include "./BoolValue.h"
 
 using std::make_shared;
@@ -21,6 +21,7 @@ public:
     virtual string toDimacs(std::string dimacLine, int &refCnt);
 
 protected:
+    void clearRef();
     virtual shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
     static string tseitinVarName();
 

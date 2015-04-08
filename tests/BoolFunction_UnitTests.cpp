@@ -41,18 +41,31 @@ TEST(BoolFunction, TestDoubleNegation) {
 }
 
 TEST(BoolFunction, Tseitin) {
-    // Impelement (A & B) | ((C | D) & E)
    BoolFunc a("a");
    BoolFunc b("b");
    BoolFunc c("c");
 
    BoolFunc unSat1 = a & !a;
-   cout << "Beginning Tseitin" << endl;
    shared_ptr<BoolTseitin> ts = unSat1.getTseitin();
-   cout << unSat1.toString() << endl;
-   cout << ts->toString() << endl;
    EXPECT_EQ(ts->isSat(), false);
+
+   BoolFunc unSat2 = (!(a | b)) & a;
+   ts = unSat2.getTseitin();
+   EXPECT_EQ(ts->isSat(), false);
+
+   BoolFunc sat1 = a & b;
+   ts = sat1.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
+
+   BoolFunc sat2 = (!(a & b)) & a;
+   ts = sat2.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
+
+   BoolFunc sat3 = (a & b) & (a & !c);
+   ts = sat3.getTseitin();
+   EXPECT_EQ(ts->isSat(), true);
 }
+
 /*
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)
@@ -85,7 +98,6 @@ TEST(BoolFunction, ToString) {
     shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
     ts->writeToDimacs("./test_src/outDimacs.cnf");
 */
-
 
 //}
 
