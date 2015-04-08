@@ -38,8 +38,10 @@ string tseitinVarName() {
 }
 
 string BoolVar::toDimacs(string dimacLine, int &refCnt) {
-    if(this->ref == -1)
+    if(this->ref == -1){
+        cout << "Increased Reference: " << this->getName() << endl;
         this->ref = refCnt++;
+    }
     return dimacLine + to_string(this->ref) + " ";
 }
 

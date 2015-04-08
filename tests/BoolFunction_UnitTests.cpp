@@ -23,6 +23,37 @@ TEST(BoolFunction, TestOperators) {
 
 }
 
+
+TEST(BoolFunction, TestDoubleNegation) {
+    // Impelement (A & B) | ((C | D) & E)
+   BoolFunc a("a");
+   BoolFunc nA = !a;
+   BoolFunc nnA = !nA;
+
+   EXPECT_EQ(nnA.toString(), "a");
+
+   BoolFunc b("b");
+   BoolFunc eq1 = a & b;
+   BoolFunc nEq1 = !eq1;
+   BoolFunc nnEq1 = !nEq1;
+
+   EXPECT_EQ(nnEq1.toString(), "(a & b)");
+}
+
+TEST(BoolFunction, Tseitin) {
+    // Impelement (A & B) | ((C | D) & E)
+   BoolFunc a("a");
+   BoolFunc b("b");
+   BoolFunc c("c");
+
+   BoolFunc unSat1 = a & !a;
+   cout << "Beginning Tseitin" << endl;
+   shared_ptr<BoolTseitin> ts = unSat1.getTseitin();
+   cout << unSat1.toString() << endl;
+   cout << ts->toString() << endl;
+   EXPECT_EQ(ts->isSat(), false);
+}
+
 TEST(BoolFunction, ToString) {
     // Impelement (A & B) | ((C | D) & E)
     shared_ptr<BoolVar> a = shared_ptr<BoolVar>(new BoolVar("a"));
@@ -49,11 +80,11 @@ TEST(BoolFunction, ToString) {
     // With Demorgan and Unary Operator
     shared_ptr<BoolUnary> demorg = shared_ptr<BoolUnary>(new BoolUnary("~", finalEq));
     EXPECT_EQ(demorg->toString(), "~((a & b) | ((c | d) & e))");
-
+/*
     // Convert to Tseitin
     shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
     ts->writeToDimacs("./test_src/outDimacs.cnf");
-
+*/
 
 
 }

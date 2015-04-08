@@ -20,6 +20,7 @@ public:
     string toString() const ;
     void writeXml(xmlpp::Node *parent, string indentation = "") const ;
     bool writeToDimacs(string filePath);
+    bool isSat();
 
 private:
     vector<shared_ptr<BoolVar> > operands;

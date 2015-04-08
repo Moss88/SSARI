@@ -1,15 +1,14 @@
 #ifndef BOOLVAR_H
 #define BOOLVAR_H
 #include <memory>
-#include "../CValue.h"
-
+#include "./BoolValue.h"
 
 using std::make_shared;
 using std::shared_ptr;
 namespace SSARI {
 
 class BoolTseitin;
-class BoolVar : public CValue {
+class BoolVar : public BoolValue {
 public:
     BoolVar(string name = "");
     void setName(string name);

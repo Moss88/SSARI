@@ -13,7 +13,7 @@ public:
     }
 
     shared_ptr<BoolVar> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-
+        
     }
 
     string toDimacs(std::string dimacLine, int &refCnt) {

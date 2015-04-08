@@ -17,6 +17,7 @@ public:
     string toString() const;
     shared_ptr<BoolVar> getBoolVar();
     string getName() const;
+    bool isValid() const;
 
 
 private:

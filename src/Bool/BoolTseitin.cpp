@@ -5,6 +5,7 @@
 using std::string;
 using std::ofstream;
 using std::to_string;
+using std::runtime_error;
 
 namespace SSARI {
 
@@ -51,6 +52,20 @@ bool BoolTseitin::writeToDimacs(string filePath) {
     outFile << file;
     outFile.close();
 
+    return true;
+}
+
+bool BoolTseitin::isSat() {
+    if(!this->writeToDimacs("outDimacs.cnf"))
+        throw runtime_error("Failed to write Dimacs file");
+
+    // Fork Subprocess
+    int status;
+    char buffer[256];
+    FILE *fp =  popen("lingeling ./outDimacs.cnf", "r");
+    while (fgets(buffer, 256, fp) != NULL)
+        printf("%s", buffer);
+    status = pclose(fp);
     return true;
 }
 

@@ -4,6 +4,7 @@
 #include "Bool/BoolAnd.h"
 #include "Bool/BoolNot.h"
 #include "Bool/BoolOr.h"
+#include "Bool/BoolFunc.h"
 
 using namespace std;
 
@@ -12,26 +13,31 @@ namespace SSARI {
 BoolAnd::BoolAnd(shared_ptr<BoolVar> opA, shared_ptr<BoolVar> opB) : BoolBinary("&", opA, opB)  {    }
 
 shared_ptr<BoolVar> BoolAnd::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
-
-    shared_ptr<BoolVar> opA = this->operands[0]->toTseitin(tseitin, cnt);
-    shared_ptr<BoolVar> opB = this->operands[1]->toTseitin(tseitin, cnt);
+    cout << "Executed this:" << this->toString() << endl;
+    cout << "Op2: " << this->operands[1]->toString() << endl;
+    BoolFunc opA(this->operands[0]->toTseitin(tseitin, cnt));
+    BoolFunc opB(this->operands[1]->toTseitin(tseitin, cnt));
+    cout << "OpB: " <<  opB.toString() << endl;
 
     // Tseitin Vars
-    shared_ptr<BoolVar> tVar = shared_ptr<BoolVar>(new BoolVar(/*BoolVar::tseitinVarName()*/ "T" + to_string(cnt++)));
-    shared_ptr<BoolNot> nTVar = shared_ptr<BoolNot>(new BoolNot(tVar));
+    BoolFunc tVar("T" + to_string(cnt++));
+    BoolFunc nTVar = !tVar;
 
     // x implies a & b
-    tseitin->addOperand(shared_ptr<BoolOr>(new BoolOr(nTVar, opA)));  // ~x | a
-    tseitin->addOperand(shared_ptr<BoolOr>(new BoolOr(nTVar, opB)));  // ~x | b
-
+    BoolFunc eq1 = nTVar | opA;
+    BoolFunc eq2 = nTVar | opB;
+    tseitin->addOperand(eq1.getBoolVar());  // ~x | a
+    tseitin->addOperand(eq2.getBoolVar());  // ~x | b
+    cout << "EQ1: " << eq1.toString() << endl;
+    cout << "EQ2: " << eq1.toString() << endl;
 
     // a & b implies x
-    shared_ptr<BoolNot> nOpA = shared_ptr<BoolNot>(new BoolNot(opA));  // ~a
-    shared_ptr<BoolNot> nOpB = shared_ptr<BoolNot>(new BoolNot(opB));  // ~b
-    shared_ptr<BoolOr> eq3 = shared_ptr<BoolOr>(new BoolOr(nOpA, nOpB));  // (~a | ~b)
-    tseitin->addOperand(shared_ptr<BoolOr>(new BoolOr(eq3, tVar)));  // (~a | ~b | x )
+    BoolFunc nOpA = !opA;  // ~a
+    BoolFunc nOpB = !opB;  // ~b
+    BoolFunc eq3 = nOpA | nOpB;  // (~a | ~b)
+    tseitin->addOperand(shared_ptr<BoolOr>(new BoolOr(eq3.getBoolVar(), tVar.getBoolVar())));  // (~a | ~b | x )
 
-    return tVar;
+    return tVar.getBoolVar();
 }
 
 }
