@@ -17,6 +17,7 @@ public:
 	CConstant(string val);
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	string toString() const;
+    string getValue() const;
 	virtual ~CConstant();
 private:
 	string value;

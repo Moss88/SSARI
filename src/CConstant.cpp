@@ -24,6 +24,11 @@ string CConstant::toString() const{
 	return this->value;
 }
 
+string CConstant::getValue() const {
+    return this->value;
+}
+
+
 CConstant::~CConstant() {
 	// TODO Auto-generated destructor stub
 }
