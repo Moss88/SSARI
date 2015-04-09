@@ -16,15 +16,15 @@ BoolFunc::BoolFunc(string name) {
 BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
 
 
-BoolFunc BoolFunc::operator|(const BoolFunc& rhs) {
+BoolFunc BoolFunc::operator|(const BoolFunc& rhs) const{
     return BoolFunc(shared_ptr<BoolOr>(new BoolOr(this->bVar, rhs.bVar)));
 }
 
-BoolFunc BoolFunc::operator&(const BoolFunc& rhs) {
+BoolFunc BoolFunc::operator&(const BoolFunc& rhs) const {
     return BoolFunc(shared_ptr<BoolAnd>(new BoolAnd(this->bVar, rhs.bVar)));
 }
 
-BoolFunc BoolFunc::operator!() {
+BoolFunc BoolFunc::operator!() const{
     if(shared_ptr<BoolNot> notVar = dynamic_pointer_cast<BoolNot>(this->bVar))
         return BoolFunc(notVar->getOperand());
     return BoolFunc(shared_ptr<BoolNot>(new BoolNot(this->bVar)));

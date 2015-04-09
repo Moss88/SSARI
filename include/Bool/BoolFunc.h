@@ -10,9 +10,9 @@ public:
     BoolFunc();
     BoolFunc(string name);
     BoolFunc(shared_ptr<BoolValue> var);
-    BoolFunc operator|(const BoolFunc& rhs);
-    BoolFunc operator&(const BoolFunc& rhs);
-    BoolFunc operator!();
+    BoolFunc operator|(const BoolFunc& rhs) const;
+    BoolFunc operator&(const BoolFunc& rhs) const;
+    BoolFunc operator!() const;
     shared_ptr<BoolTseitin> getTseitin();
     string toString() const;
     shared_ptr<BoolValue> getBoolVar();
