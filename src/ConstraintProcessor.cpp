@@ -41,11 +41,11 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
 
 
     // Fetch Operands
-    list<shared_ptr<SymbolicVar> > operands;
+    list<shared_ptr<const SymbolicVar> > operands;
     for(auto iter = constraint->cbegin(); iter != constraint->cend(); iter++)
     {
         // Determine if Operand is a CVar, could be constant
-        shared_ptr<SymbolicVar> symVar;
+        shared_ptr<const SymbolicVar> symVar;
         if(shared_ptr<CVar> opVar = dynamic_pointer_cast<CVar>(*iter))
             symVar = this->processConstraint(*opVar, rf);
         else if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter))
@@ -70,7 +70,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         // Determine if set to constant or another var
         if(operands.size() != 1)
             throw runtime_error(var.toString() + " = operation has too many operands");
-        outSymbol = this->mathProc->set(operands.front());
+        //outSymbol = this->mathProc->set(operands.front());
     }
     else
     {
