@@ -73,7 +73,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         // Determine if set to constant or another var
         if(operands.size() != 1)
             throw runtime_error(var.toString() + " = operation has too many operands");
-        outSymbol = this->mathProc->set(operands.front());
+        outSymbol = this->mathProc->set(var, operands.front());
     }
     else
     {

@@ -17,7 +17,7 @@ private:
 class SimpleMath : public CVarMath {
 public:
     // Set Operation
-    shared_ptr<SymbolicVar> set(shared_ptr<SymbolicVar> var){ return var;}
+    shared_ptr<SymbolicVar> set(CVar var, shared_ptr<SymbolicVar> expr){ return expr;}
 
     // Get Operation
     shared_ptr<SymbolicVar> get(shared_ptr<const CConstant> c) {
