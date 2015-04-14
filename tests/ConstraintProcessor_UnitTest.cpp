@@ -20,7 +20,7 @@ public:
     shared_ptr<SymbolicVar> set(shared_ptr<SymbolicVar> var){ return var;}
 
     // Get Operation
-    shared_ptr<const SymbolicVar> get(shared_ptr<const CConstant> c) {
+    shared_ptr<SymbolicVar> get(shared_ptr<const CConstant> c) {
 
         return shared_ptr<SimpleSymVar>(new SimpleSymVar(c->toString()));
     }
@@ -135,14 +135,12 @@ TEST(ConstraintProcessor, GenerateSimpleConstaint) {
 
     // Create Constraint x == z
     shared_ptr<Constraint> c = shared_ptr<Constraint>(new Constraint(COperator("==")));
-    c->addOperand(shared_ptr<CVar>(new CVar("x")));
-    c->addOperand(shared_ptr<CVar>(new CVar("z")));
+    c->addOperand(shared_ptr<CVar>(new CVar("x", "", 0)));
+    c->addOperand(shared_ptr<CVar>(new CVar("z", "", 0)));
 
     // Generate Constraint
     shared_ptr<SymbolicVar> symVar = cProcessor.genConstraint(c, rf);
     shared_ptr<SimpleSymVar> simpleVar = dynamic_pointer_cast<SimpleSymVar>(symVar);
-   cout << rf.dumpRegister() << endl;
-    cout << simpleVar->getName() << endl;
     // Test Output
     EXPECT_EQ(simpleVar->getName(), "4 + 6 == 6");
 

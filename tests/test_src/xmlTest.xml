@@ -3,19 +3,19 @@
 <!ENTITY xml "Extensible Markup Language">
 ]>
 <RegisterFile>
-<Register name="x">
+<Register name="x" funcName="" idx="0">
 	<Constraint>
 		<COperator operator="="/>
 		<CConstant value="6"/>
 	</Constraint>
 </Register>
-<Register name="y">
+<Register name="y" funcName="" idx="0">
 	<Constraint>
 		<COperator operator="="/>
 		<CConstant value="4"/>
 	</Constraint>
 </Register>
-<Register name="z">
+<Register name="z" funcName="" idx="0">
 	<Constraint>
 		<COperator operator="+"/>
 		<CVar name="x" funcName="" idx="0"/>

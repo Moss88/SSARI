@@ -39,28 +39,31 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
     if(!constraint)
         return nullptr;
 
-
     // Fetch Operands
-    list<shared_ptr<const SymbolicVar> > operands;
+    list<shared_ptr<SymbolicVar> > operands;
     for(auto iter = constraint->cbegin(); iter != constraint->cend(); iter++)
     {
         // Determine if Operand is a CVar, could be constant
-        shared_ptr<const SymbolicVar> symVar;
-        if(shared_ptr<CVar> opVar = dynamic_pointer_cast<CVar>(*iter))
+        shared_ptr<SymbolicVar> symVar;
+        if(shared_ptr<CVar> opVar = dynamic_pointer_cast<CVar>(*iter)){
             symVar = this->processConstraint(*opVar, rf);
-        else if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter))
+            if(symVar == nullptr)
+                throw runtime_error((*iter)->toString() + " could not be found in register file");
+        }
+        else if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter)){
             symVar = this->mathProc->get(opVar);
+            if(symVar == nullptr)
+                throw runtime_error((*iter)->toString() + " constant was not generated from MathProcessor");
+        }
         else
             throw runtime_error((*iter)->toString() + " unknown type");
 
-        if(symVar == nullptr)
-            throw runtime_error((*iter)->toString() + " could not be found in register file");
+
 
         operands.push_front(symVar);
 
 
     }
-
 
     // Process Constraint
     shared_ptr<SymbolicVar> outSymbol;
@@ -70,7 +73,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         // Determine if set to constant or another var
         if(operands.size() != 1)
             throw runtime_error(var.toString() + " = operation has too many operands");
-        //outSymbol = this->mathProc->set(operands.front());
+        outSymbol = this->mathProc->set(operands.front());
     }
     else
     {

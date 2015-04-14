@@ -10,7 +10,7 @@ public:
     virtual shared_ptr<SymbolicVar> set(shared_ptr<SymbolicVar> var) = 0;
 
     // Get Operation
-    virtual shared_ptr<const SymbolicVar> get(shared_ptr<const CConstant> c) = 0;
+    virtual shared_ptr<SymbolicVar> get(shared_ptr<const CConstant> c) = 0;
 
     // Boolean Operations
     virtual shared_ptr<SymbolicVar>  gt( shared_ptr<const SymbolicVar> opA, shared_ptr<const SymbolicVar> opB) = 0;

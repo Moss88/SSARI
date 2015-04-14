@@ -131,12 +131,14 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
         const Element *var = dynamic_cast<const Element*>(nd);
         if(var)
         {
-            CVar cVar("");
             shared_ptr<Constraint> constraint;
 
             // Get Name and set CVar
             string name = var->get_attribute_value("name");
-            cVar = CVar(name);
+            string funcName = var->get_attribute_value("funcName");
+            string idx = var->get_attribute_value("idx");
+            CVar cVar = CVar(name, funcName, stoi(idx));
+
 
             // Process All Sub-Nodes
             const Node* childNd = var->get_first_child();
