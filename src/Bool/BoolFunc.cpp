@@ -49,7 +49,7 @@ bool BoolFunc::isValid() const {
 string BoolFunc::toString() const {
     if(bVar)
         return bVar->toString();
-    return "";
+    return "nullptr";
 }
 
 
