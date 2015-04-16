@@ -31,20 +31,22 @@ shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(const shared_ptr<Cons
 
 shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, RegisterFile &rf) {
     // Determine if function is already set
+    /*
     auto iter = this->funcFile.find(var);
     if(iter != funcFile.end())
-        return iter->second;
+        return iter->second;*/
     // Fetch Constraint Associated with variable
     shared_ptr<Constraint> constraint = rf.getVar(var);
     if(!constraint)
         return nullptr;
-
     // Fetch Operands
     list<shared_ptr<SymbolicVar> > operands;
     for(auto iter = constraint->cbegin(); iter != constraint->cend(); iter++)
     {
         // Determine if Operand is a CVar, could be constant
         shared_ptr<SymbolicVar> symVar;
+
+
         if(shared_ptr<CVar> opVar = dynamic_pointer_cast<CVar>(*iter)){
             symVar = this->processConstraint(*opVar, rf);
             if(symVar == nullptr)
@@ -55,9 +57,10 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
             if(symVar == nullptr)
                 throw runtime_error((*iter)->toString() + " constant was not generated from MathProcessor");
         }
+        else if(*iter == nullptr)
+            throw runtime_error("Operand is a nullptr");
         else
             throw runtime_error((*iter)->toString() + " unknown type");
-
 
 
         operands.push_front(symVar);
@@ -73,7 +76,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         // Determine if set to constant or another var
         if(operands.size() != 1)
             throw runtime_error(var.toString() + " = operation has too many operands");
-        outSymbol = this->mathProc->set(operands.front());
+        outSymbol = this->mathProc->set(var, operands.front());
     }
     else
     {

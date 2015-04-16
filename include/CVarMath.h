@@ -1,13 +1,16 @@
 #ifndef CVARMATH_H
 #define CVARMATH_H
 #include "SymbolicVar.h"
+
 #include <memory>
 using std::shared_ptr;
 namespace SSARI {
+class CVar;
+
 class CVarMath {
 public:
     // Set Operation
-    virtual shared_ptr<SymbolicVar> set(shared_ptr<SymbolicVar> var) = 0;
+    virtual shared_ptr<SymbolicVar> set(CVar var, shared_ptr<SymbolicVar> expr) = 0;
 
     // Get Operation
     virtual shared_ptr<SymbolicVar> get(shared_ptr<const CConstant> c) = 0;
