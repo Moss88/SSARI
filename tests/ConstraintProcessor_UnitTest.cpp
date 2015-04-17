@@ -142,7 +142,7 @@ TEST(ConstraintProcessor, GenerateSimpleConstaint) {
     shared_ptr<SymbolicVar> symVar = cProcessor.genConstraint(c, rf);
     shared_ptr<SimpleSymVar> simpleVar = dynamic_pointer_cast<SimpleSymVar>(symVar);
     // Test Output
-    EXPECT_EQ(simpleVar->getName(), "4 + 6 == 6");
+    EXPECT_EQ(simpleVar->getName(), "6 == 6 + 4");
 
 
 }

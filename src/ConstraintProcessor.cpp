@@ -63,7 +63,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
             throw runtime_error((*iter)->toString() + " unknown type");
 
 
-        operands.push_front(symVar);
+        operands.push_back(symVar);
 
 
     }
