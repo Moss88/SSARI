@@ -1,5 +1,6 @@
 #include "ConstraintProcessor.h"
 #include <list>
+
 using std::list;
 namespace SSARI {
 ConstraintProcessor::ConstraintProcessor(CVarMath *math) : mathProc(math)
@@ -19,8 +20,12 @@ bool ConstraintProcessor::satisfyConstaint(const shared_ptr<Constraint> constrai
 
 }
 
-shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(const shared_ptr<Constraint> constraint, RegisterFile &rf) {
+shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(shared_ptr<Constraint> constraint, RegisterFile &rf) {
     // Temp add to register file
+    if(constraint == nullptr)
+        throw runtime_error("ConstraintProcessor: Null Input Constraint");
+
+
     CVar constraintVar("const_8465486");
     rf.setVar(constraintVar, constraint);
     shared_ptr<SymbolicVar> sVar = this->processConstraint(constraintVar, rf);
@@ -37,8 +42,14 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         return iter->second;*/
     // Fetch Constraint Associated with variable
     shared_ptr<Constraint> constraint = rf.getVar(var);
+
+
     if(!constraint)
-        return nullptr;
+    {
+        cout << "CVar: " << var.debugInfo() << endl;
+        cout << rf.dumpRegister() << endl;
+        throw runtime_error("ConstraintProcessor: Error Null Constraint for " + var.toString());
+    }
     // Fetch Operands
     list<shared_ptr<SymbolicVar> > operands;
     for(auto iter = constraint->cbegin(); iter != constraint->cend(); iter++)

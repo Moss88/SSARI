@@ -48,8 +48,12 @@ void CVar::writeXml(xmlpp::Node *parent, std::string indentation) const {
 
 string CVar::toString() const {
 	stringstream ss;
-	ss << this->name << "_" << this->idx;
+    ss << this->name << "_" << this->idx;
 	return ss.str();
+}
+
+string CVar::debugInfo() const {
+    return this->funcName + ": " + this->name + ", " + std::to_string(this->idx) + "\n";
 }
 
 CVar::~CVar() {

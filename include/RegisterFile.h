@@ -38,6 +38,9 @@ public:
 
 	void setVar(CVar varName, shared_ptr<Constraint> var)
 	{
+        if(!var)
+            throw runtime_error("RegisterFile: null constraint");
+
 		registers[varName] = var;
 	}
 

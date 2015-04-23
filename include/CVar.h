@@ -17,6 +17,7 @@ public:
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	bool 	operator<(const CVar& rhs) const;
 	string 	toString() const;
+    string  debugInfo() const;
 	string 	getName() const;
 	string 	getFuncName() const;
 	int 	getIndex() const;
