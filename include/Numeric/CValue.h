@@ -9,7 +9,7 @@
 #define SRC_BOOLLOGIC_CVALUE_H_
 
 #include <string>
-
+#include "../Value.h"
 namespace xmlpp {
 	class Element;
 	class Node;
@@ -18,7 +18,7 @@ namespace xmlpp {
 using std::string;
 namespace SSARI {
 
-class CValue {
+class CValue : public Value {
 public:
 	CValue();
 	virtual string toString() const = 0;
