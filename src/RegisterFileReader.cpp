@@ -1,5 +1,5 @@
 #include <RegisterFileReader.h>
-#include <CConstant.h>
+#include "./Numeric/CConstant.h"
 #include <libxml++/libxml++.h>
 #include <libxml++/attribute.h>
 using xmlpp::Attribute;

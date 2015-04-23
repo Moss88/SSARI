@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <CVar.h>
+#include <./Numeric/CVar.h>
 #include <sstream>
 #include <libxml++/document.h>
 using namespace xmlpp;

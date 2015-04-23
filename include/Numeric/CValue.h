@@ -9,9 +9,9 @@
 #define SRC_BOOLLOGIC_CVALUE_H_
 
 #include <string>
+
 #include "../Value.h"
 namespace xmlpp {
-	class Element;
 	class Node;
 }
 

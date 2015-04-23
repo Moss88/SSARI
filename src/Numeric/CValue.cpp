@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <CValue.h>
+#include <./Numeric/CValue.h>
 
 namespace SSARI {
 

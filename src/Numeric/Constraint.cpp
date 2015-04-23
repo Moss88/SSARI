@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <Constraint.h>
+#include <./Numeric/Constraint.h>
 
 #include <libxml++/document.h>
 using namespace xmlpp;

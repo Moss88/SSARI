@@ -15,9 +15,9 @@ namespace SSARI {
 
 class Value {
 public:
-    Value();
+    Value(){};
     virtual string toString() const = 0;
-    virtual ~Value();
+    virtual ~Value(){};
 };
 
 } /* namespace SSARI */
