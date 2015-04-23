@@ -7,6 +7,7 @@
 #include "./Numeric/COperator.h"
 #include "./Numeric/CValue.h"
 #include "./Numeric/CVar.h"
+#include "./Numeric/CFunc.h"
 #include "Value.h"
 #include "RegisterFile.h"
 #include "RegisterFileReader.h"
