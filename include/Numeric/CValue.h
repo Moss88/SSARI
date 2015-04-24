@@ -10,15 +10,15 @@
 
 #include <string>
 
+#include "../SValue.h"
 namespace xmlpp {
-	class Element;
 	class Node;
 }
 
 using std::string;
 namespace SSARI {
 
-class CValue {
+class CValue : public SValue {
 public:
 	CValue();
 	virtual string toString() const = 0;

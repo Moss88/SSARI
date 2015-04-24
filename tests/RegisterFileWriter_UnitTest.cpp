@@ -1,5 +1,5 @@
 #include <RegisterFileWriter.h>
-#include <CConstant.h>
+#include <./Numeric/CConstant.h>
 #include <string>
 #include <fstream>
 #include "gtest/gtest.h"
@@ -43,4 +43,5 @@ TEST(RegisterFileWriter, WriteXMLFile) {
 
     goldF.close();
     testF.close();
+
 }

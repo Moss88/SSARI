@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <COperator.h>
+#include <./Numeric/COperator.h>
 #include <libxml++/document.h>
 using xmlpp::Element;
 namespace SSARI {

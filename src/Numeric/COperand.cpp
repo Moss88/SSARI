@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <COperand.h>
+#include <./Numeric/COperand.h>
 #include <sstream>
 using std::stringstream;
 namespace SSARI {

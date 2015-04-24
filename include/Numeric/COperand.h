@@ -7,6 +7,7 @@
 
 #ifndef SRC_BOOLLOGIC_COPERAND_H_
 #define SRC_BOOLLOGIC_COPERAND_H_
+#define DEPRECATED
 #include <string>
 #include "CValue.h"
 
@@ -20,7 +21,7 @@ public:
     virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
 
 	virtual ~COperand();
-};
+} __attribute__((deprecated));
 
 } /* namespace SSARI */
 

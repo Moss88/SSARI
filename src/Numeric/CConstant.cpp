@@ -5,7 +5,7 @@
  *      Author: lukepierc
  */
 
-#include <CConstant.h>
+#include <./Numeric/CConstant.h>
 #include <libxml++/document.h>
 using xmlpp::Element;
 namespace SSARI {

@@ -7,8 +7,8 @@
 
 #ifndef TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
 #define TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
-#include "Constraint.h"
-#include "CVar.h"
+#include "./Numeric/Constraint.h"
+#include "./Numeric/CVar.h"
 #include<memory>
 #include<string>
 #include<map>

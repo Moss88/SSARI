@@ -7,6 +7,7 @@
 
 #ifndef SRC_BOOLLOGIC_CONSTRAINT_H_
 #define SRC_BOOLLOGIC_CONSTRAINT_H_
+#define DEPRECATED
 #include <vector>
 #include <memory>
 #include "CValue.h"
@@ -29,7 +30,7 @@ public:
 private:
 	const COperator op;
 	vector<shared_ptr<CValue> > operands;
-};
+} __attribute__((deprecated));
 
 } /* namespace SSARI */
 

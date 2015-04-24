@@ -19,7 +19,7 @@
 #include <iostream>
 
 #include <RegisterFile.h>
-#include "CConstant.h"
+#include "./Numeric/CConstant.h"
 #include "ConstraintProcessor.h"
 
 using namespace SSARI;
