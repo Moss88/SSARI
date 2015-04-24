@@ -1,5 +1,5 @@
 #include <RegisterFileWriter.h>
-#include <./Numeric/CConstant.h>
+#include <ssari.h>
 #include <string>
 #include <fstream>
 #include "gtest/gtest.h"
@@ -10,21 +10,17 @@ TEST(RegisterFileWriter, WriteXMLFile) {
     RegisterFile r;
 
     CVar var1("x");
-    Constraint c1(COperator("="));
-    c1.addOperand(make_shared<CConstant>(CConstant("6")));
-    r.setVar(var1, make_shared<Constraint>(c1));
+    CFunc c1(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("6")))));
+    r.setVar(var1, c1);
 
     CVar var2("y");
-    Constraint c2(COperator("="));
-    c2.addOperand(make_shared<CConstant>(CConstant("4")));
-    r.setVar(var2, make_shared<Constraint>(c2));
+    CFunc c2(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("4")))));
+    r.setVar(var2, c2);
 
 
     CVar var3 = CVar("z");
-    Constraint c3(COperator("+"));
-    c3.addOperand(make_shared<CVar>(var1));
-    c3.addOperand(make_shared<CVar>(var2));
-    r.setVar(var3, make_shared<Constraint>(c3));
+    CFunc c3 = CFunc(var1) + CFunc(var2);
+    r.setVar(var3, c3);
 
     rfWriter.writeFile("./test_src/xmlTest1.xml", r);
 

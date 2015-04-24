@@ -7,7 +7,7 @@
 
 #ifndef TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
 #define TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
-#include "./Numeric/Constraint.h"
+#include "./Numeric/CFunc.h"
 #include "./Numeric/CVar.h"
 #include<memory>
 #include<string>
@@ -21,24 +21,25 @@ using std::endl;
 using std::string;
 using std::map;
 using std::cout;
+using std::runtime_error;
 namespace SSARI {
 
 class RegisterFile {
 public:
 	RegisterFile() {}
 
-	shared_ptr<Constraint> getVar(CVar varName) {
+    CFunc getVar(CVar varName) {
 		try {
-			return shared_ptr<Constraint> (registers.at(varName));
+            return CFunc (registers.at(varName));
 		} catch(const std::out_of_range& oor) {
 			cout << "Error Occurred Fetching " << varName.getName() << " " << varName.getIndex() << " from regFile" << endl;
-			return shared_ptr<Constraint>(nullptr);
+            return CFunc();
 		}
 	}
 
-	void setVar(CVar varName, shared_ptr<Constraint> var)
+    void setVar(CVar varName, CFunc var)
 	{
-        if(!var)
+        if(!var.getCValue())
             throw runtime_error("RegisterFile: null constraint");
 
 		registers[varName] = var;
@@ -47,22 +48,22 @@ public:
 	string dumpRegister() {
 		stringstream ss;
 		for(auto iter = registers.begin(); iter != registers.end(); iter++)
-			ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second->toString() << endl;
+            ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
 		return ss.str();
 	}
 
-	map<CVar, shared_ptr<Constraint>>::const_iterator cbegin() const {
+    map<CVar, CFunc>::const_iterator cbegin() const {
 		return registers.cbegin();
 	}
 
-	map<CVar, shared_ptr<Constraint>>::const_iterator cend() const {
+    map<CVar, CFunc>::const_iterator cend() const {
 		return registers.cend();
 	}
 
 	virtual ~RegisterFile(){}
 
 protected:
-	map<CVar, shared_ptr<Constraint>> registers;
+    map<CVar, CFunc> registers;
 };
 
 

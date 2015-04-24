@@ -8,11 +8,11 @@ using xmlpp::Node;
 namespace SSARI {
 
 
-CBinary::CBinary() : op(COperator("")) {
+CBinary::CBinary() : CExpr(COperator("")) {
 
 }
 
-CBinary::CBinary(COperator op, shared_ptr<CValue> opA, shared_ptr<CValue> opB) : op(op) {
+CBinary::CBinary(COperator op, shared_ptr<CValue> opA, shared_ptr<CValue> opB) : CExpr(op) {
     operands.push_back(opA);
     operands.push_back(opB);
 }

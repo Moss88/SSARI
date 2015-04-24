@@ -1,4 +1,5 @@
 #include "ConstraintProcessor.h"
+#include "./Numeric/CExpr.h"
 #include <list>
 
 using std::list;
@@ -27,7 +28,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(shared_ptr<Constraint
 
 
     CVar constraintVar("const_8465486");
-    rf.setVar(constraintVar, constraint);
+    rf.setVar(constraintVar, CFunc(constraint));
     shared_ptr<SymbolicVar> sVar = this->processConstraint(constraintVar, rf);
 
     return sVar;
@@ -41,10 +42,10 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
     if(iter != funcFile.end())
         return iter->second;*/
     // Fetch Constraint Associated with variable
-    shared_ptr<Constraint> constraint = rf.getVar(var);
+    CFunc constraint = rf.getVar(var);
 
 
-    if(!constraint)
+    if(!constraint.getCValue())
     {
         cout << "CVar: " << var.debugInfo() << endl;
         cout << rf.dumpRegister() << endl;
@@ -52,7 +53,8 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
     }
     // Fetch Operands
     list<shared_ptr<SymbolicVar> > operands;
-    for(auto iter = constraint->cbegin(); iter != constraint->cend(); iter++)
+    shared_ptr<CExpr> expr = dynamic_pointer_cast<CExpr>(constraint.getCValue());
+    for(auto iter = expr->cbegin(); iter != expr->cend(); iter++)
     {
         // Determine if Operand is a CVar, could be constant
         shared_ptr<SymbolicVar> symVar;
@@ -81,7 +83,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
 
     // Process Constraint
     shared_ptr<SymbolicVar> outSymbol;
-    string op = constraint->getOperator().getOperator();
+    string op = expr->getOperator().getOperator();
     if(op == "=")
     {
         // Determine if set to constant or another var

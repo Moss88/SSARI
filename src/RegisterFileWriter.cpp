@@ -1,6 +1,7 @@
 #include <RegisterFileWriter.h>
 #include <libxml++/document.h>
-
+#include <string>
+using std::to_string;
 using namespace xmlpp;
 namespace SSARI {
 
@@ -25,7 +26,7 @@ bool RegisterFileWriter::writeFile(string path, RegisterFile &rf) {
             Element* e = nodeRoot->add_child("Register");
             e->add_child_text("\n");
             e->add_child_text("\t");
-            iter->second->writeXml(e, "\t");
+            iter->second.getCValue()->writeXml(e, "\t");
             e->set_attribute("name", iter->first.getName());
             e->set_attribute("funcName", iter->first.getFuncName());
             e->set_attribute("idx", to_string(iter->first.getIndex()));

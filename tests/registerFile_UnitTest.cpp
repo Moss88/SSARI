@@ -19,8 +19,7 @@
 #include <iostream>
 
 #include <RegisterFile.h>
-#include "./Numeric/CConstant.h"
-#include "ConstraintProcessor.h"
+#include "ssari.h"
 
 using namespace SSARI;
 using std::cout;
@@ -31,16 +30,15 @@ TEST(RegisterFile, TestRegFile) {
 	RegisterFile rFile;
 
     CVar var("X");
-    shared_ptr<Constraint> c = shared_ptr<Constraint>(new Constraint(COperator("=")));
-    c->addOperand(shared_ptr<CConstant>(new CConstant("0")));
-    rFile.setVar(var, c);
-    shared_ptr<Constraint> ret1 = rFile.getVar(var);
-    EXPECT_NE(ret1, nullptr);
+    CFunc constZero(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("0")))));
+
+    rFile.setVar(var, constZero);
+    CFunc ret1 = rFile.getVar(var);
+    EXPECT_NE(ret1.getCValue(), nullptr);
 
     CVar var2("Y");
-    shared_ptr<Constraint> c2 = shared_ptr<Constraint>(new Constraint(COperator("=")));
-    c2->addOperand(shared_ptr<CConstant>(new CConstant("1")));
-    rFile.setVar(var2, c2);
-    shared_ptr<Constraint> ret2 = rFile.getVar(var2);
-    EXPECT_NE(ret2, nullptr);
+    CFunc constOne(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("1")))));
+    rFile.setVar(var2, constOne);
+    CFunc ret2 = rFile.getVar(var2);
+    EXPECT_NE(ret2.getCValue(), nullptr);
 }

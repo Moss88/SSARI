@@ -1,5 +1,6 @@
 #include <RegisterFileReader.h>
 #include "./Numeric/CConstant.h"
+#include "./Numeric/Constraint.h"
 #include <libxml++/libxml++.h>
 #include <libxml++/attribute.h>
 using xmlpp::Attribute;
@@ -156,7 +157,7 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
 
             // Add Variable
             if(!cVar.getName().empty() && constraint)
-                rf.setVar(cVar, constraint);
+                rf.setVar(cVar, CFunc(constraint));
             else if(cVar.getName().empty())
                 error += "Empty CVar Name. ";
             else
