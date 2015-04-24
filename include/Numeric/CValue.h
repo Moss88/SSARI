@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "../Value.h"
+#include "../SValue.h"
 namespace xmlpp {
 	class Node;
 }
@@ -18,7 +18,7 @@ namespace xmlpp {
 using std::string;
 namespace SSARI {
 
-class CValue : public Value {
+class CValue : public SValue {
 public:
 	CValue();
 	virtual string toString() const = 0;

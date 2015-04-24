@@ -1,5 +1,5 @@
-#ifndef VALUE_H
-#define VALUE_H
+#ifndef SVALUE_H
+#define SVALUE_H
 /*
  * CValue.h
  *
@@ -13,11 +13,11 @@ using std::string;
 
 namespace SSARI {
 
-class Value {
+class SValue {
 public:
-    Value(){};
+    SValue(){};
     virtual string toString() const = 0;
-    virtual ~Value(){};
+    virtual ~SValue(){};
 };
 
 } /* namespace SSARI */
