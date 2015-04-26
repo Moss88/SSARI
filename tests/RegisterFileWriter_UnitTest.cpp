@@ -5,16 +5,17 @@
 #include "gtest/gtest.h"
 using namespace std;
 using namespace SSARI;
+
 TEST(RegisterFileWriter, WriteXMLFile) {
     RegisterFileWriter rfWriter;
     RegisterFile r;
 
     CVar var1("x");
-    CFunc c1(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("6")))));
+    CFunc c1(shared_ptr<CConstant>(new CConstant("6")));
     r.setVar(var1, c1);
 
     CVar var2("y");
-    CFunc c2(shared_ptr<CUnary>(new CUnary(COperator("="), shared_ptr<CConstant>(new CConstant("4")))));
+    CFunc c2(shared_ptr<CConstant>(new CConstant("4")));
     r.setVar(var2, c2);
 
 

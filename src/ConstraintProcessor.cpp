@@ -1,7 +1,7 @@
 #include "ConstraintProcessor.h"
 #include "./Numeric/CExpr.h"
 #include <list>
-
+#include <memory>
 using std::list;
 namespace SSARI {
 ConstraintProcessor::ConstraintProcessor(CVarMath *math) : mathProc(math)
@@ -37,7 +37,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(CFunc constraint, Reg
 
 shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, RegisterFile &rf) {
     string op;
-
+    cout << "Processing: " << var.toString() << endl;
     // Determine if function is already set
     /*
     auto iter = this->funcFile.find(var);
@@ -45,6 +45,7 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
         return iter->second;*/
     // Fetch Constraint Associated with variable
     CFunc constraint = rf.getVar(var);
+    cout << "Constraint: " << constraint.toString() << endl;
 
     if(!constraint.isValid())
     {
@@ -59,9 +60,16 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
     if(shared_ptr<CVar> var = constraint.toCVar())
         operands.push_back(this->processConstraint(*var, rf));
     else if(shared_ptr<CConstant> var = constraint.toConstant())
-        return this->mathProc->get(var);
+    {
+        cout << "returning Constant" << endl;
+        return this->mathProc->set(var, this->mathProc->get(var));
+    }
     else
     {
+        if(dynamic_pointer_cast<Constraint>(constraint.getCValue()) != nullptr)
+            throw runtime_error("Is Constraint!!!");
+
+
         shared_ptr<CExpr> expr = constraint.toExpr();
         if(expr == nullptr)
             throw runtime_error("ConstraintProcessor: Error expecting CExpr");
@@ -71,24 +79,18 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CVar var, Registe
             // Determine if Operand is a CVar, could be constant
             shared_ptr<SymbolicVar> symVar;
 
-
-            if(shared_ptr<CVar> opVar = dynamic_pointer_cast<CVar>(*iter)){
+            if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter)){
+                symVar = this->mathProc->get(opVar);
+                if(symVar == nullptr)
+                    throw runtime_error((*iter)->toString() + " constant was not generated from MathProcessor");
+            }
+            else
+            {
                 cout << "About to recurse to solve: " << opVar->toString() << endl;
                 symVar = this->processConstraint(*opVar, rf);
                 if(symVar == nullptr)
                     throw runtime_error((*iter)->toString() + " could not be found in register file");
             }
-            else if(shared_ptr<CConstant> opVar = dynamic_pointer_cast<CConstant>(*iter)){
-                symVar = this->mathProc->get(opVar);
-                if(symVar == nullptr)
-                    throw runtime_error((*iter)->toString() + " constant was not generated from MathProcessor");
-            }
-            else if(*iter == nullptr)
-                throw runtime_error("Operand is a nullptr");
-            else
-                throw runtime_error((*iter)->toString() + " unknown type");
-
-
             operands.push_back(symVar);
 
 

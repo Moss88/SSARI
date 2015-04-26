@@ -4,22 +4,16 @@
 ]>
 <RegisterFile>
 <Register name="x" funcName="" idx="0">
-	<Constraint>
-		<COperator operator="="/>
-		<CConstant value="6"/>
-	</Constraint>
+	<CConstant value="6"/>
 </Register>
 <Register name="y" funcName="" idx="0">
-	<Constraint>
-		<COperator operator="="/>
-		<CConstant value="4"/>
-	</Constraint>
+	<CConstant value="4"/>
 </Register>
 <Register name="z" funcName="" idx="0">
-	<Constraint>
+	<CBinary>
 		<COperator operator="+"/>
 		<CVar name="x" funcName="" idx="0"/>
 		<CVar name="y" funcName="" idx="0"/>
-	</Constraint>
+	</CBinary>
 </Register>
 </RegisterFile>

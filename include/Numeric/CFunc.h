@@ -10,11 +10,13 @@ class CValue;
 class CVar;
 class CExpr;
 class CConstant;
+class COperator;
 class CFunc {
 public:
     CFunc();
     CFunc(shared_ptr<CValue> expr);
     CFunc(string var, string funcName ="", int idx = 0);
+    CFunc(COperator op, CFunc opA, CFunc opB);
     CFunc(CVar var);
     CFunc operator+(const CFunc& rhs) const;
     CFunc operator-(const CFunc& rhs) const;

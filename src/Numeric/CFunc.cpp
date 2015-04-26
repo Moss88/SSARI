@@ -27,6 +27,11 @@ CFunc::CFunc(CVar var) {
    this->cVal = make_shared<CVar>(var);
 }
 
+CFunc::CFunc(COperator op, CFunc opA, CFunc opB) {
+    this->cVal = shared_ptr<CBinary>(new CBinary(op, opA.getCValue(), opB.getCValue()));
+}
+
+
 
 shared_ptr<CValue> CFunc::getCValue() const {
     return this->cVal;

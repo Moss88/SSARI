@@ -23,7 +23,7 @@ string CBinary::toString() const {
 
 
 void CBinary::writeXml(xmlpp::Node *parent, string indentation) const {
-    Element *e = parent->add_child("Constraint");
+    Element *e = parent->add_child("CBinary");
     e->add_child_text("\n" + indentation + "\t");
     this->op.writeXml(e);
     for(auto iter = this->operands.cbegin(); iter != this->operands.cend(); iter++)

@@ -1,6 +1,6 @@
 #include "./Numeric/CUnary.h"
 #include "./Numeric/COperator.h"
-
+using std::runtime_error;
 namespace SSARI {
 
 CUnary::CUnary(COperator op) : CExpr(op)  { }
@@ -19,6 +19,7 @@ shared_ptr<CValue> CUnary::getOperand() {
 
 void CUnary::writeXml(xmlpp::Node *parent, string indentation) const {
     // TODO Complete this func
+    throw runtime_error("IMPLEMENT CUnary writeXML");
 }
 
 

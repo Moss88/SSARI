@@ -128,19 +128,17 @@ TEST(ConstraintProcessor, GenerateSimpleConstaint) {
     if(rfReader.fail())
         cout << rfReader.getError() << endl;
     ASSERT_EQ(rfReader.fail(), false);
-    cout << "Made it passed the reading" << endl;
     // Invoke Derived Math Class
     SimpleMath sMath;
     ConstraintProcessor cProcessor(&sMath);
 
     // Create Constraint x == z
-    CFunc varX("x"), varY("y");
-    CFunc c = varX.eq(varY);
+    CFunc varX("x");
+    CFunc varZ = rf.getVar(CVar("z"));
+    CFunc c = varX.eq(varZ);
 
-    cout << "Constraint Generated" << endl;
     // Generate Constraint
     shared_ptr<SymbolicVar> symVar = cProcessor.genConstraint(c, rf);
-    cout << "Failed in genConstraint" << endl;
     shared_ptr<SimpleSymVar> simpleVar = dynamic_pointer_cast<SimpleSymVar>(symVar);
     // Test Output
     EXPECT_EQ(simpleVar->getName(), "6 == 6 + 4");
