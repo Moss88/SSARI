@@ -18,7 +18,7 @@ public:
     shared_ptr<BoolValue> getBoolVar();
     string getName() const;
     bool isValid() const;
-
+    bool isSat();
 
 private:
     shared_ptr<BoolValue> bVar;

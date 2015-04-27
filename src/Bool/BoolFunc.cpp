@@ -30,6 +30,13 @@ BoolFunc BoolFunc::operator!() const{
     return BoolFunc(shared_ptr<BoolNot>(new BoolNot(this->bVar)));
 }
 
+
+bool BoolFunc::isSat() {
+    if(bVar)
+        return bVar->getTseitin()->isSat();
+    return false;
+}
+
 shared_ptr<BoolTseitin> BoolFunc::getTseitin() {
     if(bVar)
         return bVar->getTseitin();

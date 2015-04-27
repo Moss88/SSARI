@@ -21,7 +21,7 @@ private:
     map<CVar, shared_ptr<SymbolicVar> > funcFile;
 
     // Methods
-    shared_ptr<SymbolicVar> processConstraint(CVar var, RegisterFile &rf);
+    shared_ptr<SymbolicVar> processConstraint(CFunc var, RegisterFile &rf);
 
     CVarMath *mathProc;
 };
