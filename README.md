@@ -40,3 +40,12 @@ cout << func.isSat() << endl;
 ```
 Produces: 0
 
+#Generate Arithmetic Expression
+```
+CFunc a("a");
+CFunc b("b");
+CFunc c("c");
+CFunc expr = a * b + c;
+cout << expr.toString() << endl;
+```
+Produces: ((a*b)+c)
