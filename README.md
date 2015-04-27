@@ -40,3 +40,17 @@ cout << func.isSat() << endl;
 ```
 Produces: 0
 
+# Boolean Manipulation  
+Library allows for creation and manipulation of boolean expressions. It also integrates with the Lingeling SAT Solver in order to determine if a boolean expression is satisfiable.  
+
+Using Boolean Manipulation Library  
+
+##Generate Arithmetic Expression
+```
+CFunc a("a");
+CFunc b("b");
+CFunc c("c");
+CFunc expr = a * b + c;
+cout << expr.toString() << endl;
+```
+Produces: ((a*b)+c)
