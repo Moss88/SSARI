@@ -12,8 +12,8 @@ class ConstraintProcessor
 {
 public:
     ConstraintProcessor(CVarMath *math);
-    bool satisfyConstaint(const shared_ptr<Constraint> constraint, RegisterFile &rf);
-    shared_ptr<SymbolicVar> genConstraint(shared_ptr<Constraint> constaint, RegisterFile &rf);
+    bool satisfyConstaint(CFunc constraint, RegisterFile &rf);
+    shared_ptr<SymbolicVar> genConstraint(CFunc constraint, RegisterFile &rf);
     ~ConstraintProcessor();
 
 private:
@@ -21,7 +21,7 @@ private:
     map<CVar, shared_ptr<SymbolicVar> > funcFile;
 
     // Methods
-    shared_ptr<SymbolicVar> processConstraint(CVar var, RegisterFile &rf);
+    shared_ptr<SymbolicVar> processConstraint(CFunc var, RegisterFile &rf);
 
     CVarMath *mathProc;
 };

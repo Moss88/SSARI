@@ -1,12 +1,13 @@
 #include <RegisterFileReader.h>
 #include "./Numeric/CConstant.h"
+#include "./Numeric/Constraint.h"
 #include <libxml++/libxml++.h>
 #include <libxml++/attribute.h>
 using xmlpp::Attribute;
 using xmlpp::Element;
 using xmlpp::Node;
 
-
+using std::to_string;
 using std::cout;
 using std::endl;
 namespace SSARI {
@@ -22,43 +23,47 @@ string RegisterFileReader::getError() const {
     return this->error;
 }
 
-shared_ptr<CValue> RegisterFileReader::processNode(const Element* e)
+CFunc RegisterFileReader::processNode(const Element* e)
 {
     string logicType = e->get_name();
-    if(logicType == "Constraint")
+    if(logicType == "CBinary")
     {
         // Fetch Operator
         const Element* opNd = dynamic_cast<const Element*>(e->get_first_child("COperator"));
         if(!opNd)
         {
             error += "No operator found for constraint. ";
-            return nullptr;
+            return CFunc();
         }
         Attribute *opType = opNd->get_attribute("operator");
         if(!opType)
         {
             error += "No attribute operator found. ";
-            return nullptr;
+            return CFunc();
         }
 
         // Create Constraint
-        shared_ptr<Constraint> c = shared_ptr<Constraint>(new Constraint(COperator(opType->get_value())));
-
+        COperator op(opType->get_value());
 
         // Fetch Operands
         const Node* child = e->get_first_child();
+        vector<CFunc> operands;
+
         while(child)
         {
             const Element *cElement = dynamic_cast<const Element*>(child);
             if(cElement && cElement->get_name() != "COperator")
-            {
-                shared_ptr<CValue> operand = this->processNode(cElement);
-                if(operand)
-                    c->addOperand(operand);
-            }
+                operands.push_back(this->processNode(cElement));
             child = child->get_next_sibling();
         }
-        return c;
+
+        if(operands.size() != 2)
+        {
+            error += "CBinary does not contain two operands, instead has " + to_string(operands.size()) + " operands. ";
+            return CFunc();
+        }
+
+        return CFunc(op, operands[0].getCValue(), operands[1].getCValue());
     }
     else if(logicType == "CConstant")
     {
@@ -66,15 +71,14 @@ shared_ptr<CValue> RegisterFileReader::processNode(const Element* e)
         string value = e->get_attribute_value("value");
         if(value.empty()) {
             error += "Constant has no value. ";
-            return nullptr;
+            return CFunc();
         }
-        constant = shared_ptr<CConstant>(new CConstant(value));
-        return constant;
+        return CFunc(shared_ptr<CConstant>(new CConstant(value)));
     }
     else if(logicType == "COperand")
     {
         error += "Unexpected COperand. ";
-        return nullptr;
+        return CFunc();
     }
     else if(logicType == "CVar")
     {
@@ -82,18 +86,18 @@ shared_ptr<CValue> RegisterFileReader::processNode(const Element* e)
         if(name.empty())
         {
             error += "CVar contains no name. ";
-            return nullptr;
+            return CFunc();
         }
         string funcName = e->get_attribute_value("funcName");
         string index = e->get_attribute_value("idx");
-        shared_ptr<CVar> cVar = shared_ptr<CVar>(new CVar(name, funcName, stoi(index)));
-        return cVar;
+        return CFunc(name, funcName, stoi(index));
     }
     else
     {
         error += "Unexpected Type.";
-        return nullptr;
+        return CFunc();
     }
+    return CFunc();
 }
 
 bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
@@ -131,7 +135,6 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
         const Element *var = dynamic_cast<const Element*>(nd);
         if(var)
         {
-            shared_ptr<Constraint> constraint;
 
             // Get Name and set CVar
             string name = var->get_attribute_value("name");
@@ -145,27 +148,25 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
             while(childNd)
             {
                 const Element *childConstraint = dynamic_cast<const Element*>(childNd);
-                if(childConstraint && childConstraint->get_name() == "Constraint")
+                if(childConstraint)
                 {
-                    shared_ptr<CValue> cVal = this->processNode(childConstraint);
-                    if(constraint = dynamic_pointer_cast<Constraint>(cVal))
-                        break;
+                    CFunc expr = this->processNode(childConstraint);
+                    if(expr.isValid())
+                    {
+                        // Add Variable
+                        if(!cVar.getName().empty())
+                            rf.setVar(cVar, expr);
+                        else if(cVar.getName().empty())
+                            error += "Empty CVar Name. ";
+                        else
+                            error += "Null Constraint. ";
+                    }
                 }
                 childNd = childNd->get_next_sibling();
             }
-
-            // Add Variable
-            if(!cVar.getName().empty() && constraint)
-                rf.setVar(cVar, constraint);
-            else if(cVar.getName().empty())
-                error += "Empty CVar Name. ";
-            else
-                error += "Null Constraint. ";
-
         }
         nd = nd->get_next_sibling();
     }
-
     return true;
 }
 bool RegisterFileReader::fail() const {

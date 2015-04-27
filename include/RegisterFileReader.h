@@ -30,7 +30,7 @@ private:
     string error;
 
     // Methods
-    shared_ptr<CValue> processNode(const xmlpp::Element *child);
+    CFunc processNode(const xmlpp::Element *child);
 };
 
 }
