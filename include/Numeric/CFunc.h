@@ -23,6 +23,9 @@ public:
     CFunc operator-() const;
     CFunc operator*(const CFunc& rhs) const;
     CFunc operator/(const CFunc& rhs) const;
+    CFunc operator|(const CFunc& rhs) const;
+    CFunc operator&(const CFunc& rhs) const;
+    CFunc operator!() const;
     CFunc eq(const CFunc& rhs) const;
 
     string toString() const;
