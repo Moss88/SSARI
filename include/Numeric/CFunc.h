@@ -26,7 +26,14 @@ public:
     CFunc operator|(const CFunc& rhs) const;
     CFunc operator&(const CFunc& rhs) const;
     CFunc operator!() const;
+    // Relational Operators, overloads not used due
+    // conflicts with std library
     CFunc eq(const CFunc& rhs) const;
+    CFunc neq(const CFunc& rhs) const;
+    CFunc lt(const CFunc& rhs) const;
+    CFunc lte(const CFunc& rhs) const;
+    CFunc gt(const CFunc& rhs) const;
+    CFunc gte(const CFunc& rhs) const;
 
     string toString() const;
     shared_ptr<CValue> getCValue() const;

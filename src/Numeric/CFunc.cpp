@@ -75,6 +75,26 @@ CFunc CFunc::eq(const CFunc& rhs) const {
     return CFunc(shared_ptr<CBinary>(new CBinary(COperator("=="), this->cVal, rhs.cVal)));
 }
 
+CFunc CFunc::neq(const CFunc& rhs) const {
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("!="), this->cVal, rhs.cVal)));
+}
+
+CFunc CFunc::lt(const CFunc& rhs) const {
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("<"), this->cVal, rhs.cVal)));
+}
+
+CFunc CFunc::lte(const CFunc& rhs) const {
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("<="), this->cVal, rhs.cVal)));
+}
+
+CFunc CFunc::gt(const CFunc& rhs) const {
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator(">"), this->cVal, rhs.cVal)));
+}
+
+CFunc CFunc::gte(const CFunc& rhs) const {
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator(">="), this->cVal, rhs.cVal)));
+}
+
 bool CFunc::isExpr() const {
     if(dynamic_pointer_cast<CExpr>(this->cVal) == nullptr)
         return false;
