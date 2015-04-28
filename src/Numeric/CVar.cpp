@@ -16,6 +16,7 @@ namespace SSARI {
 CVar::CVar(string name, string funcName, int idx): name(name), funcName(funcName), idx(idx) {}
 CVar::CVar(const CVar& var): name(var.getName()), funcName(var.getFuncName()), idx(var.getIndex()) {}
 
+
 bool CVar::operator<(const CVar& rhs) const {
 	if(this->funcName == rhs.funcName)
 	{
@@ -54,6 +55,13 @@ string CVar::toString() const {
 
 string CVar::debugInfo() const {
     return this->funcName + ": " + this->name + ", " + std::to_string(this->idx) + "\n";
+}
+
+
+bool CVar::operator==(const CVar& rhs) const {
+    if((this->funcName == rhs.funcName) && (this->name == rhs.name) && (this->idx == rhs.idx))
+        return true;
+    return false;
 }
 
 CVar::~CVar() {

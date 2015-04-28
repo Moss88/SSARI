@@ -29,6 +29,9 @@ shared_ptr<SymbolicVar> ConstraintProcessor::genConstraint(CFunc constraint, Reg
 
     CVar constraintVar("const_8465486");
     rf.setVar(constraintVar, constraint);
+    rf.getVar(constraintVar);
+    cout << "Escaped crashing: set " << constraintVar.debugInfo() << endl;
+    cout.flush();
     shared_ptr<SymbolicVar> sVar = this->processConstraint(constraintVar, rf);
 
     return sVar;

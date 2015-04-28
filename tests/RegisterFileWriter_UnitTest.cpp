@@ -42,3 +42,4 @@ TEST(RegisterFileWriter, WriteXMLFile) {
     testF.close();
 
 }
+

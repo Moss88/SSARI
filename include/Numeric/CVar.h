@@ -13,7 +13,7 @@ namespace SSARI {
 class CVar : public COperand {
 public:
 	CVar(string name, string funcName = "", int idx = 0);
-	CVar(const CVar& var);
+    CVar(const CVar& var);
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	bool 	operator<(const CVar& rhs) const;
 	string 	toString() const;
@@ -21,11 +21,12 @@ public:
 	string 	getName() const;
 	string 	getFuncName() const;
 	int 	getIndex() const;
+    bool operator==(const CVar& rhs) const;
 	virtual ~CVar();
 private:
-	string name;
-	string funcName;
-	int idx;
+    const string name;
+    const string funcName;
+    const int idx;
 };
 
 } /* namespace SSARI */

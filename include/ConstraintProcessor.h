@@ -18,7 +18,7 @@ public:
 
 private:
     // Data
-    map<CVar, shared_ptr<SymbolicVar> > funcFile;
+    //map<CVar, shared_ptr<SymbolicVar> > funcFile;
 
     // Methods
     shared_ptr<SymbolicVar> processConstraint(CFunc var, RegisterFile &rf);
