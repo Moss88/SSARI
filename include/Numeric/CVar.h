@@ -24,9 +24,9 @@ public:
     bool operator==(const CVar& rhs) const;
 	virtual ~CVar();
 private:
-    const string name;
-    const string funcName;
-    const int idx;
+    string name;
+    string funcName;
+    int idx;
 };
 
 } /* namespace SSARI */
