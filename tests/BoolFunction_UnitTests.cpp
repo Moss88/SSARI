@@ -23,6 +23,27 @@ TEST(BoolFunction, TestOperators) {
 
 }
 
+TEST(BoolFunction, TestConstants)
+{
+    BoolConstant tr;
+    BoolConstant fls;
+    BoolFunc a("a");
+    BoolFunc t( BoolConstant(true) );
+    BoolFunc f(fls);
+
+    BoolFunc expr = a & t;
+    EXPECT_EQ(expr.toString(), "a");
+    expr = a & f;
+    EXPECT_EQ(expr.toString(), "F");
+    expr = a | t;
+    EXPECT_EQ(expr.toString(), "T");
+    expr = a | f;
+    EXPECT_EQ(expr.toString(), "a");
+    expr = !t;
+    EXPECT_EQ(expr.toString(), "F");
+    expr = !f;
+    EXPECT_EQ(expr.toString(), "T");
+}
 
 TEST(BoolFunction, TestDoubleNegation) {
     // Impelement (A & B) | ((C | D) & E)

@@ -10,6 +10,7 @@
 #include "./Numeric/CUnary.h"
 #include "./Numeric/CBinary.h"
 #include "./Numeric/CFunc.h"
+#include "./Numeric/CUniversal.h"
 #include "SValue.h"
 #include "RegisterFile.h"
 #include "RegisterFileReader.h"
@@ -25,5 +26,6 @@
 #include "Bool/BoolNot.h"
 #include "Bool/BoolFunc.h"
 #include "Bool/BoolValue.h"
+#include "Bool/BoolConstant.h"
 #endif // SSARI
 

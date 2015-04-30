@@ -1,8 +1,8 @@
 
 #include <memory>
-#include "./BoolValue.h"
-#include "./BoolTseitin.h"
-
+#include "BoolValue.h"
+#include "BoolTseitin.h"
+#include "BoolConstant.h"
 namespace SSARI {
 
 class BoolFunc {
@@ -10,6 +10,7 @@ public:
     BoolFunc();
     BoolFunc(string name);
     BoolFunc(shared_ptr<BoolValue> var);
+    BoolFunc(BoolConstant val);
     BoolFunc operator|(const BoolFunc& rhs) const;
     BoolFunc operator&(const BoolFunc& rhs) const;
     BoolFunc operator!() const;
@@ -19,6 +20,8 @@ public:
     string getName() const;
     bool isValid() const;
     bool isSat();
+    bool isOne() const;
+    bool isZero() const;
 
 private:
     shared_ptr<BoolValue> bVar;

@@ -21,6 +21,8 @@ public:
     string toString() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
     string toDimacs(string dimacLine, int &refCnt);
+    bool isOne() const;
+    bool isZero() const;
     ~BoolBinary();
 protected:
     void clearRef();

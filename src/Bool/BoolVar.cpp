@@ -24,7 +24,13 @@ void BoolVar::clearRef() {
     this->ref = -1;
 }
 
+bool BoolVar::isOne() const {
+    return false;
+}
 
+bool BoolVar::isZero() const {
+    return false;
+}
 
 shared_ptr<BoolValue> BoolVar::toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt) {
     return shared_from_this();

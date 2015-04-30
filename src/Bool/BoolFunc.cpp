@@ -4,6 +4,7 @@
 #include "Bool/BoolNot.h"
 #include "Bool/BoolVar.h"
 #include <memory>
+
 using std::dynamic_pointer_cast;
 namespace SSARI {
 
@@ -13,18 +14,34 @@ BoolFunc::BoolFunc(string name) {
     bVar = shared_ptr<BoolVar>(new BoolVar(name));
 }
 
+BoolFunc::BoolFunc(BoolConstant val) {
+    bVar = shared_ptr<BoolConstant>(new BoolConstant());
+}
+
 BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
 
-
 BoolFunc BoolFunc::operator|(const BoolFunc& rhs) const{
+    if(this->isOne() || rhs.isZero())
+        return *this;
+    else if(rhs.isOne() || this->isZero())
+        return rhs;
     return BoolFunc(shared_ptr<BoolOr>(new BoolOr(this->bVar, rhs.bVar)));
 }
 
 BoolFunc BoolFunc::operator&(const BoolFunc& rhs) const {
+    if(this->isOne() || rhs.isZero())
+        return rhs;
+    else if(rhs.isOne() || this->isZero())
+        return *this;
     return BoolFunc(shared_ptr<BoolAnd>(new BoolAnd(this->bVar, rhs.bVar)));
 }
 
 BoolFunc BoolFunc::operator!() const{
+    if(this->isOne())
+        return BoolFunc(BoolConstant());
+    else if(this->isZero())
+        return BoolFunc(BoolConstant());
+
     if(shared_ptr<BoolNot> notVar = dynamic_pointer_cast<BoolNot>(this->bVar))
         return BoolFunc(notVar->getOperand());
     return BoolFunc(shared_ptr<BoolNot>(new BoolNot(this->bVar)));
@@ -32,6 +49,12 @@ BoolFunc BoolFunc::operator!() const{
 
 
 bool BoolFunc::isSat() {
+    // Check for Constants
+    if(this->isOne())
+        return true;
+    else
+        return false;
+
     if(bVar)
         return bVar->getTseitin()->isSat();
     return false;
@@ -59,7 +82,13 @@ string BoolFunc::toString() const {
     return "nullptr";
 }
 
+bool BoolFunc::isOne() const {
+    return this->bVar->isOne();
+}
 
+bool BoolFunc::isZero() const {
+    return this->bVar->isZero();
+}
 
 }
 
