@@ -40,6 +40,29 @@ cout << func.isSat() << endl;
 ```
 Produces: 0
 
+##Support for Constants
+Constructor, Assignment and Operators support constant true/false
+```
+BoolFunc a("a");
+BoolFunc t(true);
+BoolFunc expr = a | t;
+cout << expr.toString() << endl;  // "T"
+expr = a & t;
+cout << expr.toString() << endl;  // "a"
+expr = a & false;
+cout << expr.toString() << endl;  // "F"
+```
+
+Expression can also be queried for constant True/False
+```
+BoolFunc a("a");
+BoolFunc expr = a & false;
+cout << expr.isZero() << endl; // "1"
+expr = a | true;
+cout << expr.isOne() << endl;  // "1"
+```
+
+
 #Generate Arithmetic Expression
 ```
 CFunc a("a");
