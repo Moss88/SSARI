@@ -3,7 +3,7 @@ using std::runtime_error;
 
 namespace SSARI {
 
-BoolConstant::BoolConstant() : val(true) {}
+BoolConstant::BoolConstant(bool val) : val(val) {}
 
 string BoolConstant::toString() const
 {

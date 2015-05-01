@@ -10,7 +10,8 @@ public:
     BoolFunc();
     BoolFunc(string name);
     BoolFunc(shared_ptr<BoolValue> var);
-    BoolFunc(BoolConstant val);
+    BoolFunc operator=(const BoolFunc& rhs) const;
+    BoolFunc operator=(bool val) const;
     BoolFunc operator|(const BoolFunc& rhs) const;
     BoolFunc operator&(const BoolFunc& rhs) const;
     BoolFunc operator!() const;

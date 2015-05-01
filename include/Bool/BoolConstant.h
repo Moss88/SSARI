@@ -5,7 +5,7 @@
 namespace SSARI {
 class BoolConstant : public BoolValue {
 public:
-    BoolConstant();
+    BoolConstant(bool val = true);
     string toString() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
     string toDimacs(std::string dimacLine, int &refCnt);

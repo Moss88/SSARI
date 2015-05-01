@@ -25,11 +25,9 @@ TEST(BoolFunction, TestOperators) {
 
 TEST(BoolFunction, TestConstants)
 {
-    BoolConstant tr;
-    BoolConstant fls;
     BoolFunc a("a");
-    BoolFunc t( BoolConstant(true) );
-    BoolFunc f(fls);
+    BoolFunc t = true;
+    BoolFunc f = false;
 
     BoolFunc expr = a & t;
     EXPECT_EQ(expr.toString(), "a");

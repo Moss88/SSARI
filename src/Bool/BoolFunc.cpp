@@ -14,11 +14,16 @@ BoolFunc::BoolFunc(string name) {
     bVar = shared_ptr<BoolVar>(new BoolVar(name));
 }
 
-BoolFunc::BoolFunc(BoolConstant val) {
-    bVar = shared_ptr<BoolConstant>(new BoolConstant());
+BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
+
+
+BoolFunc BoolFunc::operator=(const BoolFunc& rhs) const {
+    return BoolFunc(rhs);
 }
 
-BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
+BoolFunc BoolFunc::operator=(bool val) const {
+    return BoolFunc(shared_ptr<BoolConstant>(new BoolConstant(val)));
+}
 
 BoolFunc BoolFunc::operator|(const BoolFunc& rhs) const{
     if(this->isOne() || rhs.isZero())
@@ -38,9 +43,9 @@ BoolFunc BoolFunc::operator&(const BoolFunc& rhs) const {
 
 BoolFunc BoolFunc::operator!() const{
     if(this->isOne())
-        return BoolFunc(BoolConstant());
+        return BoolFunc(shared_ptr<BoolConstant>(new BoolConstant(false)));
     else if(this->isZero())
-        return BoolFunc(BoolConstant());
+        return BoolFunc(shared_ptr<BoolConstant>(new BoolConstant(true)));
 
     if(shared_ptr<BoolNot> notVar = dynamic_pointer_cast<BoolNot>(this->bVar))
         return BoolFunc(notVar->getOperand());
