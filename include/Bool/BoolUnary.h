@@ -15,6 +15,8 @@ public:
     BoolUnary(string op, shared_ptr<BoolValue> operand) : op(op), operand(operand) {}
     string toString() const { return op + operand->toString();}
     void writeXml(xmlpp::Node *parent, string indentation = "") const {}
+    bool isOne() const {return false;}
+    bool isZero() const {return false;}
 
 protected:
     void clearRef() {operand->clearRef();}

@@ -20,6 +20,13 @@ void BoolBinary::clearRef(){
     this->operands[1]->clearRef();
 }
 
+bool BoolBinary::isOne() const {
+    return false;
+}
+
+bool BoolBinary::isZero() const {
+    return false;
+}
 
 string BoolBinary::toDimacs(string dimacLine, int &refCnt) {
     for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)

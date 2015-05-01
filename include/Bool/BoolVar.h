@@ -15,7 +15,8 @@ public:
     int getRef();
     string getName() const;
     void setRef(int num);
-
+    bool isOne() const;
+    bool isZero() const;
     virtual string toString() const;
     virtual void writeXml(xmlpp::Node *parent, string indentation = "") const;
     virtual string toDimacs(std::string dimacLine, int &refCnt);

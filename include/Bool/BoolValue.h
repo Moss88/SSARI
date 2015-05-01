@@ -34,6 +34,8 @@ public:
         tseitin->addOperand(finalVar);
         return tseitin;
     }
+    virtual bool isOne() const = 0;
+    virtual bool isZero() const = 0;
     virtual string toDimacs(std::string dimacLine, int &refCnt) = 0;
     virtual ~BoolValue(){}
 
