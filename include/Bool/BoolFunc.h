@@ -7,14 +7,24 @@ namespace SSARI {
 
 class BoolFunc {
 public:
+    // Constructors
     BoolFunc();
     BoolFunc(string name);
     BoolFunc(shared_ptr<BoolValue> var);
-    BoolFunc operator=(const BoolFunc& rhs) const;
-    BoolFunc operator=(bool val) const;
+    BoolFunc(char const* name);
+    BoolFunc(bool val);
+    BoolFunc(const BoolFunc& rhs);
+
+    // Assignment Overloads
+    BoolFunc operator=(const BoolFunc& rhs);
+    BoolFunc operator=(bool val);
+
+    // Operator Overloads
     BoolFunc operator|(const BoolFunc& rhs) const;
     BoolFunc operator&(const BoolFunc& rhs) const;
     BoolFunc operator!() const;
+
+    // General Methods
     shared_ptr<BoolTseitin> getTseitin();
     string toString() const;
     shared_ptr<BoolValue> getBoolVar();
@@ -27,5 +37,10 @@ public:
 private:
     shared_ptr<BoolValue> bVar;
 };
+
+BoolFunc operator&(bool lhs, const BoolFunc& rhs);
+BoolFunc operator&(const BoolFunc& lhs, bool rhs);
+BoolFunc operator|(bool lhs, const BoolFunc& rhs);
+BoolFunc operator|(const BoolFunc& lhs, bool rhs);
 
 }

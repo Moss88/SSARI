@@ -7,24 +7,38 @@
 
 using std::dynamic_pointer_cast;
 namespace SSARI {
-
-BoolFunc::BoolFunc() : bVar(nullptr){}
+// Constructors
+BoolFunc::BoolFunc() : bVar(nullptr){ }
 
 BoolFunc::BoolFunc(string name) {
     bVar = shared_ptr<BoolVar>(new BoolVar(name));
 }
 
-BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) {}
+BoolFunc::BoolFunc(char const* name) : BoolFunc(std::string(name)) { }
 
+BoolFunc::BoolFunc(shared_ptr<BoolValue> var) : bVar(var) { }
 
-BoolFunc BoolFunc::operator=(const BoolFunc& rhs) const {
-    return BoolFunc(rhs);
+BoolFunc::BoolFunc(bool val) {
+    this->bVar = shared_ptr<BoolConstant>(new BoolConstant(val));
 }
 
-BoolFunc BoolFunc::operator=(bool val) const {
-    return BoolFunc(shared_ptr<BoolConstant>(new BoolConstant(val)));
+BoolFunc::BoolFunc(const BoolFunc& rhs) {
+    this->bVar = rhs.bVar;
 }
 
+// Assignment Overloads
+BoolFunc BoolFunc::operator=(const BoolFunc& rhs) {
+    this->bVar = rhs.bVar;
+    return *this;
+}
+
+BoolFunc BoolFunc::operator=(bool val) {
+    this->bVar = shared_ptr<BoolConstant>(new BoolConstant(val));
+    return *this;
+}
+
+
+// Operator Overloads
 BoolFunc BoolFunc::operator|(const BoolFunc& rhs) const{
     if(this->isOne() || rhs.isZero())
         return *this;
@@ -34,12 +48,15 @@ BoolFunc BoolFunc::operator|(const BoolFunc& rhs) const{
 }
 
 BoolFunc BoolFunc::operator&(const BoolFunc& rhs) const {
-    if(this->isOne() || rhs.isZero())
+    if(this->isZero() || rhs.isZero())
+        return BoolFunc(false);
+    else if(this->isOne())
         return rhs;
-    else if(rhs.isOne() || this->isZero())
+    else if(rhs.isOne())
         return *this;
     return BoolFunc(shared_ptr<BoolAnd>(new BoolAnd(this->bVar, rhs.bVar)));
 }
+
 
 BoolFunc BoolFunc::operator!() const{
     if(this->isOne())
@@ -52,7 +69,32 @@ BoolFunc BoolFunc::operator!() const{
     return BoolFunc(shared_ptr<BoolNot>(new BoolNot(this->bVar)));
 }
 
+// Static Operator Overloads
+BoolFunc operator&(bool lhs, const BoolFunc& rhs) {
+    if(lhs)
+        return rhs;
+    return BoolFunc(false);
+}
 
+BoolFunc operator&(const BoolFunc& lhs, bool rhs) {
+    if(rhs)
+        return lhs;
+    return BoolFunc(false);
+}
+
+BoolFunc operator|(bool lhs, const BoolFunc& rhs) {
+    if(lhs)
+        return BoolFunc(true);
+    return rhs;
+}
+
+BoolFunc operator|(const BoolFunc& lhs, bool rhs) {
+    if(rhs)
+        return BoolFunc(true);
+    return lhs;
+}
+
+// General Members
 bool BoolFunc::isSat() {
     // Check for Constants
     if(this->isOne())

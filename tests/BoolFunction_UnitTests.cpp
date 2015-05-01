@@ -26,21 +26,65 @@ TEST(BoolFunction, TestOperators) {
 TEST(BoolFunction, TestConstants)
 {
     BoolFunc a("a");
-    BoolFunc t = true;
-    BoolFunc f = false;
+    BoolFunc t(true);
+    BoolFunc f(false);
 
+    // Basic Constant Testing
+    EXPECT_EQ(t.toString(), "T");
+    EXPECT_EQ(f.toString(), "F");
+    EXPECT_EQ(t.isOne(), true);
+    EXPECT_EQ(t.isZero(), false);
+    EXPECT_EQ(f.isOne(), false);
+    EXPECT_EQ(f.isZero(), true);
+    EXPECT_EQ(a.isOne(), false);
+    EXPECT_EQ(a.isZero(), false);
+
+    // Expression Testing
     BoolFunc expr = a & t;
     EXPECT_EQ(expr.toString(), "a");
+    expr = t & a;
+    EXPECT_EQ(expr.toString(), "a");
+
     expr = a & f;
     EXPECT_EQ(expr.toString(), "F");
+    expr = f & a;
+    EXPECT_EQ(expr.toString(), "F");
+
     expr = a | t;
     EXPECT_EQ(expr.toString(), "T");
+    expr = t | a;
+    EXPECT_EQ(expr.toString(), "T");
+
+
     expr = a | f;
     EXPECT_EQ(expr.toString(), "a");
+    expr = f | a;
+    EXPECT_EQ(expr.toString(), "a");
+
     expr = !t;
     EXPECT_EQ(expr.toString(), "F");
     expr = !f;
     EXPECT_EQ(expr.toString(), "T");
+
+    // Test Static Overloads
+    expr = a | true;
+    EXPECT_EQ(expr.toString(), "T");
+    expr = true | a;
+    EXPECT_EQ(expr.toString(), "T");
+    expr = a | false;
+    EXPECT_EQ(expr.toString(), "a");
+    expr = false | a;
+    EXPECT_EQ(expr.toString(), "a");
+
+    expr = a & true;
+    EXPECT_EQ(expr.toString(), "a");
+    expr = true & a;
+    EXPECT_EQ(expr.toString(), "a");
+    expr = a & false;
+    EXPECT_EQ(expr.toString(), "F");
+    expr = false & a;
+    EXPECT_EQ(expr.toString(), "F");
+
 }
 
 TEST(BoolFunction, TestDoubleNegation) {
@@ -84,43 +128,6 @@ TEST(BoolFunction, Tseitin) {
    ts = sat3.getTseitin();
    EXPECT_EQ(ts->isSat(), true);
 }
-
-/*
-TEST(BoolFunction, ToString) {
-    // Impelement (A & B) | ((C | D) & E)
-    shared_ptr<BoolVar> a = shared_ptr<BoolVar>(new BoolVar("a"));
-    shared_ptr<BoolVar> b = shared_ptr<BoolVar>(new BoolVar("b"));
-    shared_ptr<BoolVar> c = shared_ptr<BoolVar>(new BoolVar("c"));
-    shared_ptr<BoolVar> d = shared_ptr<BoolVar>(new BoolVar("d"));
-    shared_ptr<BoolVar> e = shared_ptr<BoolVar>(new BoolVar("e"));
-
-
-    // (A & B)
-    shared_ptr<BoolAnd> eq1 = shared_ptr<BoolAnd>(new BoolAnd(a, b));
-
-    // (C | D)
-    shared_ptr<BoolOr> eq2 = shared_ptr<BoolOr>(new BoolOr(c, d));
-
-    // EQ2 & E
-    shared_ptr<BoolAnd> eq3 = shared_ptr<BoolAnd>(new BoolAnd(eq2, e));
-
-    // EQ1 | EQ3
-    shared_ptr<BoolOr> finalEq = shared_ptr<BoolOr>(new BoolOr(eq1, eq3));
-    EXPECT_EQ(finalEq->toString(), "((a & b) | ((c | d) & e))");
-
-
-    // With Demorgan and Unary Operator
-    shared_ptr<BoolUnary> demorg = shared_ptr<BoolUnary>(new BoolUnary("~", finalEq));
-    EXPECT_EQ(demorg->toString(), "~((a & b) | ((c | d) & e))");
-/*
-    // Convert to Tseitin
-    shared_ptr<BoolTseitin> ts = finalEq->getTseitin();
-    ts->writeToDimacs("./test_src/outDimacs.cnf");
-*/
-
-//}
-
-
 
 
 
