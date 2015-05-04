@@ -42,8 +42,14 @@ shared_ptr<SymbolicVar> ConstraintProcessor::processConstraint(CFunc var, Regist
     else
         expr = var;
 
+
     if(expr.isConst())
-        return this->mathProc->set(*(var.toCVar()), this->mathProc->get(expr.toConstant()));
+    {
+        if(var.isVar())
+            return this->mathProc->set(*(var.toCVar()), this->mathProc->get(expr.toConstant()));
+        else
+            return this->mathProc->get(expr.toConstant());
+    }
     else if(expr.isVar())
         return this->mathProc->set(*(var.toCVar()), this->processConstraint(expr, rf));
     else
