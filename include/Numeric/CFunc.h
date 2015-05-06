@@ -2,6 +2,9 @@
 #define CFUNC_H
 #include <memory>
 #include <string>
+#include <vector>
+
+using std::vector;
 using std::string;
 using std::shared_ptr;
 
@@ -42,12 +45,15 @@ public:
     bool isVar() const;
     bool isConst() const;
 
+    vector<shared_ptr<const CVar>> getDependentVars() const;
     shared_ptr<CVar> toCVar() const;
     shared_ptr<CConstant> toConstant() const;
     shared_ptr<CExpr> toExpr() const;
 
 private:
     shared_ptr<CValue> cVal;
+
+    void rGetVars(vector<shared_ptr<const CVar>> &vars, shared_ptr<CValue> val) const;
 
 };
 }

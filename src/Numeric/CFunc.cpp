@@ -119,6 +119,29 @@ bool CFunc::isValid() const {
     return true;
 }
 
+vector<shared_ptr<const CVar>> CFunc::getDependentVars() const {
+    vector<shared_ptr<const CVar>> dVars;
+    // Ensure it is an expression
+    if(!this->isValid())
+        return dVars;
+
+    // Setup Perform Recursion
+    rGetVars(dVars, this->cVal);
+    return dVars;
+}
+
+void CFunc::rGetVars(vector<shared_ptr<const CVar>> &vars, shared_ptr<CValue> val) const
+{
+    if(shared_ptr<const CVar> var = dynamic_pointer_cast<const CVar>(val))
+        vars.push_back(var);
+    else if(shared_ptr<CExpr> expr = dynamic_pointer_cast<CExpr>(val))
+    {
+        for(auto iter = expr->begin(); iter != expr->end(); iter++)
+            rGetVars(vars, *iter);
+    }
+}
+
+
 shared_ptr<CVar> CFunc::toCVar() const {
     if(shared_ptr<CVar> var = dynamic_pointer_cast<CVar>(this->cVal))
         return var;
