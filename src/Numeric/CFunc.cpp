@@ -59,11 +59,11 @@ CFunc CFunc::operator-() const {
 }
 
 CFunc CFunc::operator|(const CFunc& rhs) const {
-    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("|"), this->cVal, rhs.cVal)));
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("||"), this->cVal, rhs.cVal)));
 }
 
 CFunc CFunc::operator&(const CFunc& rhs) const {
-    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("&"), this->cVal, rhs.cVal)));
+    return CFunc(shared_ptr<CBinary>(new CBinary(COperator("&&"), this->cVal, rhs.cVal)));
 }
 
 CFunc CFunc::operator!() const {
