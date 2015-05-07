@@ -63,7 +63,7 @@ public:
         this->registers[varName] =var;
 	}
 
-	string dumpRegister() {
+    string dumpRegister() const {
 		stringstream ss;
 		for(auto iter = registers.begin(); iter != registers.end(); iter++)
             ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
