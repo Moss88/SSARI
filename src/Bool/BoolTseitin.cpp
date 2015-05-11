@@ -2,6 +2,8 @@
 #include "Bool/BoolValue.h"
 #include <string>
 #include <fstream>
+#include <stdio.h>
+#include <unistd.h>
 
 using std::string;
 using std::ofstream;
@@ -26,7 +28,7 @@ string BoolTseitin::toString() const {
     return equation;
 }
 
-bool BoolTseitin::writeToDimacs(string filePath) {
+string BoolTseitin::writeToDimacs() {
 
     int refCnt = 1;
     int lineCnt = 1;
@@ -43,14 +45,7 @@ bool BoolTseitin::writeToDimacs(string filePath) {
     string header = "c Autogen output\np cnf " + to_string(refCnt + 1) + " " + to_string(lineCnt - 1) + "\n";
     string file = header + dimacs;
 
-    // Write to File
-    ofstream outFile(filePath);
-    if(!outFile.is_open())
-        return false;
-    outFile << file;
-    outFile.close();
-
-    return true;
+    return file;
 }
 
 bool BoolTseitin::isSat() {
@@ -58,15 +53,51 @@ bool BoolTseitin::isSat() {
     for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)
         (*iter)->clearRef();
 
-    if(!this->writeToDimacs("outDimacs.cnf"))
-        throw runtime_error("Failed to write Dimacs file");
+    string file = writeToDimacs();
+	
+    int p2cFD[2];
+    int c2pFD[2];
 
-    // Fork Subprocess
-    int status;
-    char buffer[256];
-    FILE *fp =  popen("lingeling ./outDimacs.cnf", "r");
-    while (fgets(buffer, 256, fp) != NULL)
+    pipe(p2cFD);
+    pipe(c2pFD);
+
+    FILE *fp = popen("which lingeling", "r");
+
+    char path[256];
+    fgets(path, 256, fp);
+    pclose(fp);
+    string filePath = path;
+
+
+    // Fork
+    if(!fork())
     {
+        dup2(c2pFD[1], 1);
+	close(c2pFD[0]);
+	close(c2pFD[1]);
+	dup2(p2cFD[0], 0);
+	close(p2cFD[0]);
+	close(p2cFD[1]);
+
+	int error = execl((filePath.substr(0,filePath.length() - 1)).c_str(), (filePath.substr(0,filePath.length() - 1)).c_str(), NULL);
+
+	printf("Error: %d", error);
+    }
+    else
+    {
+    char buffer[256];
+
+    close(p2cFD[0]);
+    close(c2pFD[1]);
+
+    write(p2cFD[1], file.c_str(), file.size());
+    close(p2cFD[1]);
+
+    FILE *in = fdopen(c2pFD[0], "r");
+
+    while (fgets(buffer, 256, in))
+    {
+	printf("%s", buffer);
         if(buffer[0] == 's')
         {
             string str(buffer);
@@ -77,14 +108,14 @@ bool BoolTseitin::isSat() {
                 return false;
         }
     }
-    status = pclose(fp);
+
+    close(c2pFD[0]);
+    }
+//  status
+
+
     return true;
 }
 
 
 }
-
-
-
-
-

@@ -19,7 +19,7 @@ public:
     BoolTseitin();
     void addOperand(shared_ptr<BoolValue> op);
     string toString() const ;
-    bool writeToDimacs(string filePath);
+    string writeToDimacs();
     bool isSat();
 
 private:
