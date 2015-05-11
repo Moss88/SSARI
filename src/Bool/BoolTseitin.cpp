@@ -110,6 +110,7 @@ bool BoolTseitin::isSat() {
     }
 
     close(c2pFD[0]);
+
     }
 //  status
 

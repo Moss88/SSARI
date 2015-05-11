@@ -22,6 +22,7 @@ public:
     string writeToDimacs();
     bool isSat();
 
+
 private:
     vector<shared_ptr<BoolValue> > operands;
 };
