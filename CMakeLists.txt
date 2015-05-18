@@ -16,7 +16,7 @@ include_directories(/usr/lib/x86_64-linux-gnu/glib-2.0/include)
 file(GLOB_RECURSE PROJECT_SOURCES "src/*.cpp")
 message(STATUS "${PROJECT_SOURCES}")
 
-#set(LINGELING_INSTALL_DIR "/home/l")
+
 
 add_subdirectory(gtest-1.7.0)
 add_subdirectory(src)
@@ -27,7 +27,6 @@ if(DEFINED LINGELING_INSTALL_DIR)
 	message(STATUS "Lingeling Install Dir: ${LINGELING_INSTALL_DIR}")
 	# Install Lingeling
 	ExternalProject_Add(lingeling
-	#	DEPENDS testProg
 		URL "file://${CMAKE_CURRENT_SOURCE_DIR}/lingeling-ayv.zip"
 		PREFIX "${CMAKE_CURRENT_BINARY_DIR}/lingeling"
 		CONFIGURE_COMMAND ""
@@ -39,9 +38,7 @@ if(DEFINED LINGELING_INSTALL_DIR)
 else()
 	set(LINGELING_INSTALL_DIR "/usr/bin")
 	message(STATUS "Lingeling Install Dir: ${LINGELING_INSTALL_DIR}")
-	# Install Lingeling
 	ExternalProject_Add(lingeling
-	#	DEPENDS testProg
 		URL "file://${CMAKE_CURRENT_SOURCE_DIR}/lingeling-ayv.zip"
 		PREFIX "${CMAKE_CURRENT_BINARY_DIR}/lingeling"
 		CONFIGURE_COMMAND ""
