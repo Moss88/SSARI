@@ -1,5 +1,10 @@
 # SSARI
 
+This build depends on the lingeling executable in order to perform SAT solving. As such it will automatically build and install lingeling into the /usr/bin path, unless otherwise specified. If you do not have sudo permissions please see build options.
+
+Build Options:  
+-DLINGELING_INSTALL_DIR:string=<Lingeling Install Dir>
+
 To Build:  
 sudo apt-get install libxml++2.6-dev  
 mkdir ./build  
@@ -9,9 +14,6 @@ make all
 
 To Install in Library Path:  
 sudo make install  
-
-For SAT Support:  
-install lingeling into the system path
 
 To Generate Documentation:  
 Ensure doxygen is installed along with graphviz  
