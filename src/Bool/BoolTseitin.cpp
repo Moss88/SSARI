@@ -73,46 +73,42 @@ bool BoolTseitin::isSat() {
     if(!fork())
     {
         dup2(c2pFD[1], 1);
-	close(c2pFD[0]);
-	close(c2pFD[1]);
-	dup2(p2cFD[0], 0);
-	close(p2cFD[0]);
-	close(p2cFD[1]);
+        close(c2pFD[0]);
+        close(c2pFD[1]);
+        dup2(p2cFD[0], 0);
+        close(p2cFD[0]);
+        close(p2cFD[1]);
 
-	int error = execl((filePath.substr(0,filePath.length() - 1)).c_str(), (filePath.substr(0,filePath.length() - 1)).c_str(), NULL);
+        int error = execl((filePath.substr(0,filePath.length() - 1)).c_str(), (filePath.substr(0,filePath.length() - 1)).c_str(), NULL);
 
-	printf("Error: %d", error);
+        printf("Error: %d", error);
     }
     else
     {
-    char buffer[256];
+        char buffer[256];
 
-    close(p2cFD[0]);
-    close(c2pFD[1]);
+        close(p2cFD[0]);
+        close(c2pFD[1]);
 
-    write(p2cFD[1], file.c_str(), file.size());
-    close(p2cFD[1]);
+        write(p2cFD[1], file.c_str(), file.size());
+        close(p2cFD[1]);
 
-    FILE *in = fdopen(c2pFD[0], "r");
+        FILE *in = fdopen(c2pFD[0], "r");
 
-    while (fgets(buffer, 256, in))
-    {
-	printf("%s", buffer);
-        if(buffer[0] == 's')
+        while (fgets(buffer, 256, in))
         {
-            string str(buffer);
-            int idx = str.find("UNSATISFIABLE");
-            if(idx == string::npos)
-                return true;
-            else
-                return false;
+            if(buffer[0] == 's')
+            {
+                string str(buffer);
+                int idx = str.find("UNSATISFIABLE");
+                if(idx == string::npos)
+                    return true;
+                else
+                    return false;
+            }
         }
+        close(c2pFD[0]);
     }
-
-    close(c2pFD[0]);
-
-    }
-//  status
 
 
     return true;
