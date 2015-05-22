@@ -81,6 +81,10 @@ public:
     }
 
     // Logical Operations
+    shared_ptr<SymbolicVar>  ite(shared_ptr<const SymbolicVar> cond, shared_ptr<const SymbolicVar> t, shared_ptr<const SymbolicVar> e) {
+        return logOr(logAnd(cond, t), logAnd(logNot(cond), e));
+    }
+
     shared_ptr<SymbolicVar>  logOr(shared_ptr<const SymbolicVar> opA, shared_ptr<const SymbolicVar> opB) {
         shared_ptr<const SimpleSymVar> a = dynamic_pointer_cast<const SimpleSymVar>(opA);
         shared_ptr<const SimpleSymVar> b = dynamic_pointer_cast<const SimpleSymVar>(opB);

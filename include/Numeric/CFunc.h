@@ -38,6 +38,9 @@ public:
     CFunc gt(const CFunc& rhs) const;
     CFunc gte(const CFunc& rhs) const;
 
+    // Friend Methods
+    CFunc ite(const CFunc& c, const CFunc &t, const CFunc &e);
+
     string toString() const;
     shared_ptr<CValue> getCValue() const;
     bool isValid() const;
@@ -56,7 +59,12 @@ private:
     void rGetVars(vector<shared_ptr<const CVar>> &vars, shared_ptr<CValue> val) const;
 
 };
+
+
+
+
 }
+
 
 #endif // CFUNC_H
 

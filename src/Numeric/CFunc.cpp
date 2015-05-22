@@ -4,6 +4,7 @@
 #include "./Numeric/CUnary.h"
 #include "./Numeric/CVar.h"
 #include "./Numeric/CConstant.h"
+#include "./Numeric/CITE.h"
 #include <memory>
 using std::dynamic_pointer_cast;
 using std::make_shared;
@@ -68,6 +69,11 @@ CFunc CFunc::operator&(const CFunc& rhs) const {
 
 CFunc CFunc::operator!() const {
     return CFunc(shared_ptr<CUnary>(new CUnary(COperator("!"), this->cVal)));
+}
+
+
+CFunc ite(const CFunc& c, const CFunc &t, const CFunc &e) {
+    return CFunc(shared_ptr<CITE>(new CITE(c.getCValue(), t.getCValue(), e.getCValue())));
 }
 
 

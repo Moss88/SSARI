@@ -30,6 +30,7 @@ public:
     virtual shared_ptr<SymbolicVar>  div(shared_ptr<const SymbolicVar> opA, shared_ptr<const SymbolicVar> opB) = 0;
 
     // Logical Operations
+    virtual shared_ptr<SymbolicVar>  ite(shared_ptr<const SymbolicVar> cond, shared_ptr<const SymbolicVar> t, shared_ptr<const SymbolicVar> e) = 0;
     virtual shared_ptr<SymbolicVar>  logOr(shared_ptr<const SymbolicVar> opA, shared_ptr<const SymbolicVar> opB) = 0;
     virtual shared_ptr<SymbolicVar>  logAnd(shared_ptr<const SymbolicVar> opA, shared_ptr<const SymbolicVar> opB) = 0;
     virtual shared_ptr<SymbolicVar>  logNot(shared_ptr<const SymbolicVar> op) = 0;
