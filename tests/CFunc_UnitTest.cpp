@@ -1,21 +1,3 @@
-
-/*
- * registerFile_UnitTest.cpp
- *
- *  Created on: Feb 18, 2015
- *      Author: lpierce
- */
-
-
-
-
-/*
- * IRFuncVisitor_UnitTest.cpp
- *
- *  Created on: Jan 27, 2015
- *      Author: lpierce
- */
-
 #include "gtest/gtest.h"
 #include <iostream>
 #include <algorithm>
