@@ -39,7 +39,7 @@ public:
     CFunc gte(const CFunc& rhs) const;
 
     // Friend Methods
-    CFunc ite(const CFunc& c, const CFunc &t, const CFunc &e);
+    friend CFunc ite(const CFunc& c, const CFunc &t, const CFunc &e);
 
     string toString() const;
     shared_ptr<CValue> getCValue() const;
