@@ -74,3 +74,19 @@ TEST(CFunc, GetDependentVars) {
     EXPECT_NE(fIter, varNames.end());
 }
 
+TEST(CFunc, ITE)
+{
+    CFunc x("X");
+    CFunc y("Y");
+    CFunc z("Z");
+
+    CFunc cond =  x.lt(y);
+    CFunc t = z + y;
+    CFunc e = z - y;
+
+    CFunc result = ite(cond, t, e);
+    EXPECT_EQ(result.toString(), "ITE((X_0<Y_0),(Z_0+Y_0),(Z_0-Y_0))");
+
+    CFunc multi = z & result;
+    EXPECT_EQ(multi.toString(), "(Z_0&&ITE((X_0<Y_0),(Z_0+Y_0),(Z_0-Y_0)))");
+}
