@@ -121,6 +121,11 @@ public:
         return true;
     }
 
+    shared_ptr<SymbolicVar> genConstraint(const CValue& expr, RegisterFile& regFile) {
+        return nullptr;
+    }
+
+
     // Clears Any History
     void clear() {}
 };
