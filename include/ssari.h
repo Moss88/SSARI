@@ -16,7 +16,6 @@
 #include "RegisterFileReader.h"
 #include "RegisterFileWriter.h"
 #include "SymbolicVar.h"
-#include "ConstraintProcessor.h"
 #include "CVarMath.h"
 #include "Bool/BoolTseitin.h"
 #include "Bool/BoolBinary.h"

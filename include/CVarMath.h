@@ -6,7 +6,7 @@
 using std::shared_ptr;
 namespace SSARI {
 class CVar;
-class CValue;
+class CFunc;
 class RegisterFile;
 
 class CVarMath {
@@ -46,7 +46,7 @@ public:
     virtual bool isSat(shared_ptr<SymbolicVar> expr) = 0;
 
     // Transform from CValue to SymbolicVar
-    virtual shared_ptr<SymbolicVar> genConstraint(const CValue& expr, RegisterFile& regFile) = 0;
+    virtual shared_ptr<SymbolicVar> genConstraint(const CFunc& expr, RegisterFile& regFile) = 0;
 
     // Clears Any History
     virtual void clear() = 0;
