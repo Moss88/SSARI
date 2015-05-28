@@ -1,7 +1,7 @@
 #ifndef CITE_H
 #define CITE_H
 
-#include "Numeric/CTernary.h"
+#include "CTernary.h"
 
 namespace SSARI {
 class CITE : public CTernary {

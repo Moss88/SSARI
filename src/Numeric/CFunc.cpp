@@ -71,8 +71,9 @@ CFunc CFunc::operator!() const {
     return CFunc(shared_ptr<CUnary>(new CUnary(COperator("!"), this->cVal)));
 }
 
-
 CFunc ite(const CFunc& c, const CFunc &t, const CFunc &e) {
+    if(!c.isValid() || !t.isValid() || !e.isValid())
+        throw std::runtime_error("CFunc.ite: Invalid input parameter");
     return CFunc(shared_ptr<CITE>(new CITE(c.getCValue(), t.getCValue(), e.getCValue())));
 }
 

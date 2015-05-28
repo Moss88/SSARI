@@ -11,6 +11,7 @@
 #include "./Numeric/CBinary.h"
 #include "./Numeric/CFunc.h"
 #include "./Numeric/CUniversal.h"
+#include "./Numeric/CITE.h"
 #include "SValue.h"
 #include "RegisterFile.h"
 #include "RegisterFileReader.h"
