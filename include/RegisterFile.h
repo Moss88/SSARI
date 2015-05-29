@@ -46,14 +46,7 @@ public:
 	RegisterFile() {}
 
     CFunc getVar(const CVar &varName) {
-		try {
             return CFunc (registers.at(varName));
-		} catch(const std::out_of_range& oor) {
-            cout << "Error Occurred Fetching " << varName.debugInfo() << " from regFile" << endl;
-            cout << "Register Contents:"<< endl;
-            cout << this->dumpRegister() << endl;
-            return CFunc();
-		}
 	}
 
     void setVar(const CVar &varName, CFunc var)
