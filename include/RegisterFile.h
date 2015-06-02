@@ -56,10 +56,13 @@ public:
         this->registers[varName] =var;
 	}
 
-    string dumpRegister() const {
+    string dumpRegister(bool verbose = false) const {
 		stringstream ss;
 		for(auto iter = registers.begin(); iter != registers.end(); iter++)
-            ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
+            if(verbose)
+                ss << iter->first.getFuncName() << "_" <<  iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
+            else
+                ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
 		return ss.str();
 	}
 
