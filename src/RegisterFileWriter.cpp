@@ -28,7 +28,6 @@ bool RegisterFileWriter::writeFile(string path, RegisterFile &rf) {
             e->add_child_text("\t");
             iter->second.getCValue()->writeXml(e, "\t");
             e->set_attribute("name", iter->first.getName());
-            e->set_attribute("funcName", iter->first.getFuncName());
             e->set_attribute("idx", to_string(iter->first.getIndex()));
             e->add_child_text("\n");
             nodeRoot->add_child_text("\n");

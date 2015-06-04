@@ -19,8 +19,8 @@ CFunc::CFunc(shared_ptr<CValue> expr){
     this->cVal = expr;
 }
 
-CFunc::CFunc(string var, string funcName, int idx) {
-   this->cVal = shared_ptr<CVar>(new CVar(var, funcName, idx));
+CFunc::CFunc(string var, int idx) {
+   this->cVal = shared_ptr<CVar>(new CVar(var, idx));
 }
 
 

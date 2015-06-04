@@ -33,7 +33,7 @@ namespace std {
   {
     std::size_t operator()(const SSARI::CVar& k) const
     {
-      string sKey = k.getFuncName()+"_"+k.getName()+"_"+to_string(k.getIndex());
+      string sKey = k.getName()+"_"+to_string(k.getIndex());
       return (hash<string>()(sKey));
     }
   };
@@ -56,13 +56,10 @@ public:
         this->registers[varName] =var;
 	}
 
-    string dumpRegister(bool verbose = false) const {
+    string dumpRegister() const {
 		stringstream ss;
 		for(auto iter = registers.begin(); iter != registers.end(); iter++)
-            if(verbose)
-                ss << iter->first.getFuncName() << "_" <<  iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
-            else
-                ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
+            ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
 		return ss.str();
 	}
 

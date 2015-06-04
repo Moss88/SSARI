@@ -13,26 +13,18 @@ using std::stringstream;
 
 namespace SSARI {
 
-CVar::CVar(string name, string funcName, int idx): name(name), funcName(funcName), idx(idx) {}
-CVar::CVar(const CVar& var): name(var.getName()), funcName(var.getFuncName()), idx(var.getIndex()) {}
+CVar::CVar(string name, int idx): name(name), idx(idx) {}
+CVar::CVar(const CVar& var): name(var.getName()), idx(var.getIndex()) {}
 
 
 bool CVar::operator<(const CVar& rhs) const {
-	if(this->funcName == rhs.funcName)
-	{
-		if(this->name == rhs.name)
-			return this->idx < rhs.idx;
-		return this->name < rhs.name;
-	}
-	return this->funcName < rhs.name;
+    if(this->name == rhs.name)
+        return this->idx < rhs.idx;
+    return this->name < rhs.name;
 }
 
 string CVar::getName() const {
 	return this->name;
-}
-
-string CVar::getFuncName() const {
-	return this->funcName;
 }
 
 int CVar::getIndex() const {
@@ -42,7 +34,6 @@ int CVar::getIndex() const {
 void CVar::writeXml(xmlpp::Node *parent, std::string indentation) const {
     Element *e = parent->add_child("CVar");
     e->set_attribute("name", this->name);
-    e->set_attribute("funcName", this->funcName);
     e->set_attribute("idx", std::to_string(this->idx));
 }
 
@@ -53,19 +44,12 @@ string CVar::toString() const {
 	return ss.str();
 }
 
-string CVar::debugInfo() const {
-    return this->funcName + ": " + this->name + ", " + std::to_string(this->idx) + "\n";
-}
-
-
 bool CVar::operator==(const CVar& rhs) const {
-    if((this->funcName == rhs.funcName) && (this->name == rhs.name) && (this->idx == rhs.idx))
+    if((this->name == rhs.name) && (this->idx == rhs.idx))
         return true;
     return false;
 }
 
-CVar::~CVar() {
-	// TODO Auto-generated destructor stub
-}
+CVar::~CVar() { }
 
 } /* namespace SSARI */

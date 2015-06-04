@@ -3,17 +3,17 @@
 <!ENTITY xml "Extensible Markup Language">
 ]>
 <RegisterFile>
-<Register name="z" funcName="" idx="0">
+<Register name="z" idx="0">
 	<CBinary>
 		<COperator operator="+"/>
-		<CVar name="x" funcName="" idx="0"/>
-		<CVar name="y" funcName="" idx="0"/>
+		<CVar name="x" idx="0"/>
+		<CVar name="y" idx="0"/>
 	</CBinary>
 </Register>
-<Register name="y" funcName="" idx="0">
+<Register name="y" idx="0">
 	<CConstant value="4"/>
 </Register>
-<Register name="x" funcName="" idx="0">
+<Register name="x" idx="0">
 	<CConstant value="6"/>
 </Register>
 </RegisterFile>

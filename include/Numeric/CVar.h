@@ -12,20 +12,17 @@ namespace SSARI {
 
 class CVar : public COperand {
 public:
-	CVar(string name, string funcName = "", int idx = 0);
+    CVar(string name, int idx = 0);
     CVar(const CVar& var);
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	bool 	operator<(const CVar& rhs) const;
 	string 	toString() const;
-    string  debugInfo() const;
 	string 	getName() const;
-	string 	getFuncName() const;
 	int 	getIndex() const;
     bool operator==(const CVar& rhs) const;
 	virtual ~CVar();
 private:
     string name;
-    string funcName;
     int idx;
 };
 

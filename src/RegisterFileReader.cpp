@@ -90,7 +90,7 @@ CFunc RegisterFileReader::processNode(const Element* e)
         }
         string funcName = e->get_attribute_value("funcName");
         string index = e->get_attribute_value("idx");
-        return CFunc(name, funcName, stoi(index));
+        return CFunc(name, stoi(index));
     }
     else
     {
@@ -138,9 +138,8 @@ bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
 
             // Get Name and set CVar
             string name = var->get_attribute_value("name");
-            string funcName = var->get_attribute_value("funcName");
             string idx = var->get_attribute_value("idx");
-            CVar cVar = CVar(name, funcName, stoi(idx));
+            CVar cVar = CVar(name, stoi(idx));
 
 
             // Process All Sub-Nodes
