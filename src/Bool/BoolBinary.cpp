@@ -28,10 +28,9 @@ bool BoolBinary::isZero() const {
     return false;
 }
 
-string BoolBinary::toDimacs(string dimacLine, int &refCnt) {
+void BoolBinary::toDimacs(PString &dimacBuffer, int &refCnt) {
     for(auto iter = this->operands.begin(); iter != this->operands.end(); iter++)
-        dimacLine = (*iter)->toDimacs(dimacLine, refCnt);
-    return dimacLine;
+        (*iter)->toDimacs(dimacBuffer, refCnt);
 }
 
 BoolBinary::~BoolBinary() {

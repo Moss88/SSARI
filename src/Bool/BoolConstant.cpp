@@ -17,7 +17,7 @@ void BoolConstant::writeXml(xmlpp::Node *parent, string indentation) const  {
 }
 
 
-string BoolConstant::toDimacs(std::string dimacLine, int &refCnt) {
+void BoolConstant::toDimacs(PString& dimacBuffer, int &refCnt) {
     throw runtime_error("BoolConstant: should not be present for dimac conversion");
 }
 

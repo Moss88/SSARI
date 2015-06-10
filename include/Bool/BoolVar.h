@@ -19,7 +19,7 @@ public:
     bool isZero() const;
     virtual string toString() const;
     virtual void writeXml(xmlpp::Node *parent, string indentation = "") const;
-    virtual string toDimacs(std::string dimacLine, int &refCnt);
+    virtual void toDimacs(PString& dimacBuffer, int &refCnt);
 
 protected:
     void clearRef();

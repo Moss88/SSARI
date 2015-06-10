@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include "./BoolTseitin.h"
+#include "./PString.h"
 using std::string;
 using std::shared_ptr;
 
@@ -36,7 +37,7 @@ public:
     }
     virtual bool isOne() const = 0;
     virtual bool isZero() const = 0;
-    virtual string toDimacs(std::string dimacLine, int &refCnt) = 0;
+    virtual void toDimacs(PString& dimacBuffer, int &refCnt) = 0;
     virtual ~BoolValue(){}
 
 protected:
