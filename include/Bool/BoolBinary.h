@@ -20,7 +20,7 @@ public:
     BoolBinary(string op, shared_ptr<BoolValue> opA, shared_ptr<BoolValue> opB);
     string toString() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
-    string toDimacs(string dimacLine, int &refCnt);
+    void toDimacs(PString& dimacBuffer, int &refCnt);
     bool isOne() const;
     bool isZero() const;
     ~BoolBinary();

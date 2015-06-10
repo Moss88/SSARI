@@ -40,11 +40,13 @@ string tseitinVarName() {
     return "Tseitin";
 }
 
-string BoolVar::toDimacs(string dimacLine, int &refCnt) {
+void BoolVar::toDimacs(PString &dimacBuff, int &refCnt) {
+    char conv[50];
     if(this->ref == -1){
         this->ref = refCnt++;
     }
-    return dimacLine + to_string(this->ref) + " ";
+    sprintf(conv, "%d ", this->ref);
+    dimacBuff.push_back(conv);
 }
 
 

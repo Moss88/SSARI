@@ -15,7 +15,7 @@ class BoolNot : public BoolUnary {
 public:
     BoolNot(shared_ptr<BoolValue> operand);
     shared_ptr<BoolValue> toTseitin(shared_ptr<BoolTseitin> tseitin, int &cnt);
-    string toDimacs(std::string dimacLine, int &refCnt);
+    void toDimacs(PString& dimacBuff, int &refCnt);
     shared_ptr<BoolValue> getOperand();
 };
 

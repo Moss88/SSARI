@@ -1,5 +1,6 @@
 #include "Bool/BoolTseitin.h"
 #include "Bool/BoolValue.h"
+#include "Bool/PString.h"
 #include <string>
 #include <fstream>
 #include <stdio.h>
@@ -32,18 +33,17 @@ string BoolTseitin::writeToDimacs() {
 
     int refCnt = 1;
     int lineCnt = 1;
-    string dimacs;
+    PString dimacs;
 
     for(auto iter  = this->operands.begin(); iter != this->operands.end(); iter++)
     {
-        string line;
         lineCnt++;
-        line += (*iter)->toDimacs(line, refCnt);
-        dimacs += line + "0\n";
+        (*iter)->toDimacs(dimacs, refCnt);
+        dimacs.push_back("0\n");
     }
     // Add Header
     string header = "c Autogen output\np cnf " + to_string(refCnt + 1) + " " + to_string(lineCnt - 1) + "\n";
-    string file = header + dimacs;
+    string file = header + dimacs.c_str();
 
     return file;
 }

@@ -8,7 +8,7 @@ public:
     BoolConstant(bool val = true);
     string toString() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
-    string toDimacs(std::string dimacLine, int &refCnt);
+    void toDimacs(PString& dimacBuff, int &refCnt);
     bool isOne() const;
     bool isZero() const;
 

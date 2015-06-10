@@ -24,10 +24,11 @@ shared_ptr<BoolValue> BoolNot::toTseitin(shared_ptr<BoolTseitin> tseitin, int &c
     return tVar.getBoolVar();
 }
 
-string BoolNot::toDimacs(std::string dimacLine, int &refCnt) {
-    string opBuff = this->operand->toDimacs("", refCnt);
-    return dimacLine += "-" + opBuff + " ";
+void BoolNot::toDimacs(PString& dimacBuff, int &refCnt) {
+    dimacBuff.push_back("-");
+    this->operand->toDimacs(dimacBuff, refCnt);
 }
+
 shared_ptr<BoolValue> BoolNot::getOperand(){
     return this->operand;
 }
