@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 #include "./BoolTseitin.h"
-#include "Bool/PString.h"
+#include "./PString.h"
 using std::string;
 using std::shared_ptr;
 

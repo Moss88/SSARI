@@ -41,12 +41,11 @@ string tseitinVarName() {
 }
 
 void BoolVar::toDimacs(PString &dimacBuff, int &refCnt) {
-    char conv[50];
     if(this->ref == -1){
         this->ref = refCnt++;
     }
-    sprintf(conv, "%d ", this->ref);
-    dimacBuff.push_back(conv);
+    dimacBuff.push_back((unsigned int)this->ref);
+    dimacBuff.push_back(" ");
 }
 
 

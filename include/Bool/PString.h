@@ -41,6 +41,31 @@ public:
         *termChar = '\0';
     }
 
+    inline void push_back(unsigned int num)
+    {
+        char tmp[10];
+        char* ptr = tmp;
+        char* ePtr = tmp - 1;
+        // Convert Integer to String
+        do {
+            *ptr++ = char(num % 10) + '0';
+            num /= 10;
+        } while(num != 0);
+        ptr--;
+
+        // Add to Buffer
+        if(termChar == endBuffer)
+            this->resize();
+
+        while(ptr != ePtr)
+        {
+            *termChar++ = *ptr--;
+            if(termChar == endBuffer)
+                this->resize();
+        }
+        *termChar = '\0';
+    }
+
 private:
     char *buffer = 0;
     char *termChar = 0;
@@ -50,9 +75,11 @@ private:
     void resize() {
         if(buffer)
         {
+            int offset = termChar - buffer;
             buffSize += buffSize;
             buffer = (char*)realloc(buffer, buffSize);
             endBuffer = buffer + buffSize;
+            termChar = buffer + offset;
         }
         else
         {
