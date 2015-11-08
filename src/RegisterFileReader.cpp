@@ -100,7 +100,7 @@ CFunc RegisterFileReader::processNode(const Element* e)
     return CFunc();
 }
 
-bool RegisterFileReader::readFile(string filepath, RegisterFile &rf)
+bool RegisterFileReader::readFile(string filepath, RegisterFile<CFunc> &rf)
 {
     xmlpp::DomParser parser;
     //parser.set_validate();

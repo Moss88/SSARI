@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 using namespace SSARI;
 TEST(RegisterFileReader, ReadXMLFile) {
-    RegisterFile rf;
+    RegisterFile<CFunc> rf;
     RegisterFileReader rfReader;
     rfReader.readFile("./test_src/xmlTest.xml", rf);
     if(rfReader.fail())

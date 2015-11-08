@@ -26,7 +26,7 @@ using namespace SSARI;
 using namespace std;
 
 TEST(RegisterFile, TestRegFile) {
-	RegisterFile rFile;
+    RegisterFile<CFunc> rFile;
 
     CVar var("X");
     CFunc constZero(shared_ptr<CConstant>(new CConstant("0")));

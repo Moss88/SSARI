@@ -7,7 +7,7 @@ namespace SSARI {
 class RegisterFileWriter {
 public:
     RegisterFileWriter();
-    bool writeFile(string path, RegisterFile &rf);
+    bool writeFile(string path, RegisterFile<CFunc> &rf);
     ~RegisterFileWriter();
 
 };

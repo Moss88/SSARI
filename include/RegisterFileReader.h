@@ -19,7 +19,7 @@ class RegisterFileReader
 {
 public:
     RegisterFileReader();
-    bool readFile(string filepath, RegisterFile &rf);
+    bool readFile(string filepath, RegisterFile<CFunc> &rf);
     void print_node(const xmlpp::Node* node, unsigned int indentation = 0);
     void print_indentation(unsigned int indentation);
     string getError() const;

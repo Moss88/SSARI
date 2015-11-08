@@ -34,6 +34,22 @@ void CBinary::writeXml(xmlpp::Node *parent, string indentation) const {
     e->add_child_text("\n" + indentation);
 }
 
+shared_ptr<CValue> CBinary::getLeftOperand() {
+    return operands.front();
+}
+
+shared_ptr<const CValue> CBinary::getLeftOperand() const {
+    return operands.front();
+}
+
+shared_ptr<CValue> CBinary::getRightOperand() {
+    return operands.back();
+}
+
+shared_ptr<const CValue> CBinary::getRightOperand() const {
+    return operands.back();
+}
+   
 CBinary::~CBinary() {}
 
 }

@@ -13,6 +13,10 @@ class CBinary : public CExpr {
 public:
     CBinary();
     CBinary(COperator op, shared_ptr<CValue> opA, shared_ptr<CValue> opB);
+    shared_ptr<CValue> getLeftOperand();
+    shared_ptr<const CValue> getLeftOperand() const;
+    shared_ptr<CValue> getRightOperand();
+    shared_ptr<const CValue> getRightOperand() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
     virtual string toString() const;
     virtual ~CBinary();

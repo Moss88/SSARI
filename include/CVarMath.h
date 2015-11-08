@@ -1,16 +1,17 @@
 #ifndef CVARMATH_H
 #define CVARMATH_H
 #include "SymbolicVar.h"
-
+#include <chrono>
 #include <memory>
 using std::shared_ptr;
 namespace SSARI {
 class CVar;
 class CFunc;
-class RegisterFile;
 
+template <typename Func>
 class CVarMath {
 public:
+    std::chrono::duration<double> elapsedTime;
     // Set Operation
     virtual shared_ptr<SymbolicVar> set(CVar var, shared_ptr<SymbolicVar> expr) = 0;
 
@@ -46,7 +47,7 @@ public:
     virtual bool isSat(shared_ptr<SymbolicVar> expr) = 0;
 
     // Transform from CValue to SymbolicVar
-    virtual shared_ptr<SymbolicVar> genConstraint(const CFunc& expr, RegisterFile& regFile) = 0;
+    virtual shared_ptr<SymbolicVar> genConstraint(const CFunc& expr, RegisterFile<Func>& regFile) = 0;
 
     // Clears Any History
     virtual void clear() = 0;

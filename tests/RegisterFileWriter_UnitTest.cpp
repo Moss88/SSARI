@@ -8,7 +8,7 @@ using namespace SSARI;
 
 TEST(RegisterFileWriter, WriteXMLFile) {
     RegisterFileWriter rfWriter;
-    RegisterFile r;
+    RegisterFile<CFunc> r;
 
     CVar var1("x");
     CFunc c1(shared_ptr<CConstant>(new CConstant("6")));

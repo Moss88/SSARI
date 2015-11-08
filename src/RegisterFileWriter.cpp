@@ -9,7 +9,7 @@ RegisterFileWriter::RegisterFileWriter() {
 
 }
 
-bool RegisterFileWriter::writeFile(string path, RegisterFile &rf) {
+bool RegisterFileWriter::writeFile(string path, RegisterFile<CFunc> &rf) {
 
     try
     {

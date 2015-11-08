@@ -41,44 +41,67 @@ namespace std {
 
 namespace SSARI {
 
+template <typename Func>
 class RegisterFile {
 public:
-	RegisterFile() {}
+    RegisterFile() = default;
+    Func getVar(const CVar &varName);
+    void setVar(const CVar &varName, Func var);
+    string dumpRegister() const;
 
-    CFunc getVar(const CVar &varName) {
-            return CFunc (registers.at(varName));
-	}
+    typename unordered_map<CVar, Func>::const_iterator cbegin() const;
+    typename unordered_map<CVar, Func>::const_iterator cend() const;
+    typename unordered_map<CVar, Func>::iterator begin();
+    typename unordered_map<CVar, Func>::iterator end();
 
-    void setVar(const CVar &varName, CFunc var)
-	{
-        if(!var.getCValue())
-            throw runtime_error("RegisterFile: null constraint");
-        this->registers[varName] =var;
-	}
-
-    string dumpRegister() const {
-		stringstream ss;
-		for(auto iter = registers.begin(); iter != registers.end(); iter++)
-            ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second.toString() << endl;
-		return ss.str();
-	}
-
-    unordered_map<CVar, CFunc>::const_iterator cbegin() const {
-		return registers.cbegin();
-	}
-
-    unordered_map<CVar, CFunc>::const_iterator cend() const {
-		return registers.cend();
-	}
-
-	virtual ~RegisterFile(){}
+    virtual ~RegisterFile();
 
 protected:
-    unordered_map<CVar, CFunc> registers;
+    unordered_map<CVar, Func> registers;
 };
 
+template<typename Func>
+Func RegisterFile<Func>::getVar(const CVar &varName) {
+    return registers.at(varName);
+}
 
+template<typename Func>
+void RegisterFile<Func>::setVar(const CVar &varName, Func var)
+{
+    this->registers[varName] = var;
+}
 
-} /* namespace SSARI */
+template<typename Func>
+string RegisterFile<Func>::dumpRegister() const {
+    stringstream ss;
+    for(auto iter = registers.begin(); iter != registers.end(); iter++)
+        ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second << endl;
+    return ss.str();
+}
+
+template<typename Func>
+typename unordered_map<CVar, Func>::const_iterator RegisterFile<Func>::cbegin() const {
+    return registers.cbegin();
+}
+
+template<typename Func>
+typename unordered_map<CVar, Func>::const_iterator RegisterFile<Func>::cend() const {
+    return registers.cend();
+}
+
+template<typename Func>
+typename unordered_map<CVar, Func>::iterator RegisterFile<Func>::begin() {
+    return registers.begin();
+}
+
+template<typename Func>
+typename unordered_map<CVar, Func>::iterator RegisterFile<Func>::end() {
+return registers.end();
+}
+
+template<typename Func>
+RegisterFile<Func>::~RegisterFile(){}
+
+}
 
 #endif /* TOOL_INCLUDE_IRNAV_REGISTERFILE_H_ */
