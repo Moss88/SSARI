@@ -21,7 +21,9 @@ namespace SSARI {
 class CValue : public SValue {
 public:
 	CValue();
-	virtual string toString() const = 0;
+    virtual bool isConstant() const {return false;}
+    virtual bool isVar() const {return false;}
+    virtual string toString() const = 0;
     virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
 	virtual ~CValue();
 };

@@ -28,6 +28,9 @@ string CConstant::getValue() const {
     return this->value;
 }
 
+bool CConstant::isConstant() const {
+    return true;
+}
 
 CConstant::~CConstant() {
 	// TODO Auto-generated destructor stub

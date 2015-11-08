@@ -31,6 +31,10 @@ int CVar::getIndex() const {
 	return this->idx;
 }
 
+bool CVar::isVar() const {
+    return true;
+}
+
 void CVar::writeXml(xmlpp::Node *parent, std::string indentation) const {
     Element *e = parent->add_child("CVar");
     e->set_attribute("name", this->name);

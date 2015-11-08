@@ -14,6 +14,7 @@ class CVar : public COperand {
 public:
     CVar(string name, int idx = 0);
     CVar(const CVar& var);
+    bool isVar() const;
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	bool 	operator<(const CVar& rhs) const;
 	string 	toString() const;

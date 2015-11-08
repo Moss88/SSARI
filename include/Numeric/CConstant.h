@@ -18,6 +18,7 @@ public:
     void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	string toString() const;
     string getValue() const;
+    bool isConstant() const;
 	virtual ~CConstant();
 private:
 	string value;
