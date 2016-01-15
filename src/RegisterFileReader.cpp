@@ -1,3 +1,4 @@
+/*
 #include <RegisterFileReader.h>
 #include "./Numeric/CConstant.h"
 #include "./Numeric/Constraint.h"
@@ -178,3 +179,4 @@ RegisterFileReader::~RegisterFileReader()
 }
 
 }
+*/

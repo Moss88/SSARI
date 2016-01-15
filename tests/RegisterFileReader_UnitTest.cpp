@@ -1,4 +1,4 @@
-#include <RegisterFileReader.h>
+/*#include <RegisterFileReader.h>
 #include "gtest/gtest.h"
 using namespace SSARI;
 TEST(RegisterFileReader, ReadXMLFile) {
@@ -9,3 +9,4 @@ TEST(RegisterFileReader, ReadXMLFile) {
         cout << rfReader.getError() << endl;
     EXPECT_EQ(rfReader.fail(), false);
 }
+*/

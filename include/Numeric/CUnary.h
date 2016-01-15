@@ -13,7 +13,7 @@ class CUnary : public CExpr {
 public:
     CUnary(COperator op);
     CUnary(COperator op, shared_ptr<CValue> operand);
-    void writeXml(xmlpp::Node *parent, string indentation = "") const;
+    //void writeXml(xmlpp::Node *parent, string indentation = "") const;
     virtual shared_ptr<CValue> getOperand();
     virtual string toString() const;
     virtual ~CUnary();

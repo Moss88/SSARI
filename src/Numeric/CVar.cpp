@@ -7,7 +7,7 @@
 
 #include <./Numeric/CVar.h>
 #include <sstream>
-#include <libxml++/document.h>
+//#include <libxml++/document.h>
 using namespace xmlpp;
 using std::stringstream;
 
@@ -34,13 +34,13 @@ int CVar::getIndex() const {
 bool CVar::isVar() const {
     return true;
 }
-
+/*
 void CVar::writeXml(xmlpp::Node *parent, std::string indentation) const {
     Element *e = parent->add_child("CVar");
     e->set_attribute("name", this->name);
     e->set_attribute("idx", std::to_string(this->idx));
 }
-
+*/
 
 string CVar::toString() const {
 	stringstream ss;
@@ -52,6 +52,11 @@ bool CVar::operator==(const CVar& rhs) const {
     if((this->name == rhs.name) && (this->idx == rhs.idx))
         return true;
     return false;
+}
+
+std::ostream& operator<<(std::ostream& os, const CVar& var) {
+    os << var.name << "_" << var.idx;
+    return os;
 }
 
 CVar::~CVar() { }

@@ -1,8 +1,8 @@
 #include "./Numeric/CBinary.h"
-#include <libxml++/document.h>
+//#include <libxml++/document.h>
 
-using xmlpp::Element;
-using xmlpp::Node;
+//using xmlpp::Element;
+//using xmlpp::Node;
 
 
 namespace SSARI {
@@ -21,7 +21,7 @@ string CBinary::toString() const {
     return "(" + operands[0]->toString() + op.toString() + operands[1]->toString() + ")";
 }
 
-
+/*
 void CBinary::writeXml(xmlpp::Node *parent, string indentation) const {
     Element *e = parent->add_child("CBinary");
     e->add_child_text("\n" + indentation + "\t");
@@ -33,7 +33,7 @@ void CBinary::writeXml(xmlpp::Node *parent, string indentation) const {
     }
     e->add_child_text("\n" + indentation);
 }
-
+*/
 shared_ptr<CValue> CBinary::getLeftOperand() {
     return operands.front();
 }

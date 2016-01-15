@@ -15,7 +15,7 @@ public:
 	COperator(string op);
 	string getOperator() const;
 	string toString() const;
-    void writeXml(xmlpp::Node *parent, string indentation = "") const;
+//    void writeXml(xmlpp::Node *parent, string indentation = "") const;
 
 	virtual ~COperator();
 private:

@@ -18,7 +18,7 @@ class COperand : public CValue {
 public:
 	COperand();
 	virtual string toString() const = 0;
-    virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
+//    virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
 
 	virtual ~COperand();
 } __attribute__((deprecated));

@@ -16,12 +16,12 @@ shared_ptr<CValue> CUnary::getOperand() {
         return operands[0];
     return nullptr;
 }
-
+/*
 void CUnary::writeXml(xmlpp::Node *parent, string indentation) const {
     // TODO Complete this func
     throw runtime_error("IMPLEMENT CUnary writeXML");
 }
-
+*/
 
 
 string CUnary::toString() const {

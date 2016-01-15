@@ -24,7 +24,7 @@ public:
     virtual bool isConstant() const {return false;}
     virtual bool isVar() const {return false;}
     virtual string toString() const = 0;
-    virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
+    //virtual void writeXml(xmlpp::Node *parent, string indentation = "") const = 0;
 	virtual ~CValue();
 };
 

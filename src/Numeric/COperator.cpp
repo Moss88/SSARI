@@ -6,8 +6,8 @@
  */
 
 #include <./Numeric/COperator.h>
-#include <libxml++/document.h>
-using xmlpp::Element;
+//#include <libxml++/document.h>
+//using xmlpp::Element;
 namespace SSARI {
 
 COperator::COperator(string op) : op(op){
@@ -21,12 +21,12 @@ string COperator::getOperator() const {
 string COperator::toString() const {
 	return op;
 }
-
+/*
 void COperator::writeXml(xmlpp::Node *parent, string indentation) const {
     Element *e = parent->add_child("COperator");
     e->set_attribute("operator", this->op);
 }
-
+*/
 COperator::~COperator() {
 }
 

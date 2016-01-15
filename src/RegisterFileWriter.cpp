@@ -1,3 +1,4 @@
+/*
 #include <RegisterFileWriter.h>
 #include <libxml++/document.h>
 #include <string>
@@ -50,3 +51,4 @@ bool RegisterFileWriter::writeFile(string path, RegisterFile<CFunc> &rf) {
 RegisterFileWriter::~RegisterFileWriter() {}
 
 }
+*/

@@ -9,22 +9,19 @@
 #define TOOL_INCLUDE_IRNAV_REGISTERFILE_H_
 #include "./Numeric/CFunc.h"
 #include "./Numeric/CVar.h"
-#include<memory>
-#include<string>
-#include<iostream>
+#include <memory>
+#include <string>
 #include <stdexcept>
-#include <sstream>
+#include <ostream>
 #include <unordered_map>
 #include <functional>
+
 
 using std::size_t;
 using std::hash;
 using std::unordered_map;
 using std::shared_ptr;
-using std::stringstream;
-using std::endl;
 using std::string;
-using std::cout;
 using std::runtime_error;
 
 namespace std {
@@ -47,7 +44,12 @@ public:
     RegisterFile() = default;
     Func getVar(const CVar &varName);
     void setVar(const CVar &varName, Func var);
-    string dumpRegister() const;
+   
+    friend std::ostream& operator<<(std::ostream& os, const RegisterFile<Func> &rf) {
+        for(auto &entry:rf.registers)
+            os << entry.first << " = " << entry.second << std::endl;
+        return os;
+    }
 
     typename unordered_map<CVar, Func>::const_iterator cbegin() const;
     typename unordered_map<CVar, Func>::const_iterator cend() const;
@@ -69,14 +71,6 @@ template<typename Func>
 void RegisterFile<Func>::setVar(const CVar &varName, Func var)
 {
     this->registers[varName] = var;
-}
-
-template<typename Func>
-string RegisterFile<Func>::dumpRegister() const {
-    stringstream ss;
-    for(auto iter = registers.begin(); iter != registers.end(); iter++)
-        ss << iter->first.getName() << "_" << iter->first.getIndex() << " = " << iter->second << endl;
-    return ss.str();
 }
 
 template<typename Func>

@@ -17,7 +17,7 @@ public:
     shared_ptr<const CValue> getLeftOperand() const;
     shared_ptr<CValue> getRightOperand();
     shared_ptr<const CValue> getRightOperand() const;
-    void writeXml(xmlpp::Node *parent, string indentation = "") const;
+//    void writeXml(xmlpp::Node *parent, string indentation = "") const;
     virtual string toString() const;
     virtual ~CBinary();
 };

@@ -7,8 +7,8 @@
 
 #include <./Numeric/Constraint.h>
 
-#include <libxml++/document.h>
-using namespace xmlpp;
+//#include <libxml++/document.h>
+//using namespace xmlpp;
 
 namespace SSARI {
 
@@ -18,7 +18,7 @@ Constraint::Constraint(COperator op) : op(op) {
 void Constraint::addOperand(shared_ptr<CValue> operand) {
 	this->operands.push_back(operand);
 }
-
+/*
 void Constraint::writeXml(xmlpp::Node *parent, string indentation) const {
     Element *e = parent->add_child("Constraint");
     e->add_child_text("\n" + indentation + "\t");
@@ -30,7 +30,7 @@ void Constraint::writeXml(xmlpp::Node *parent, string indentation) const {
     }
     e->add_child_text("\n" + indentation);
 }
-
+*/
 
 string Constraint::toString() const{
 	string buffer = "(";

@@ -15,7 +15,7 @@ namespace SSARI {
 class CConstant : public COperand {
 public:
 	CConstant(string val);
-    void writeXml(xmlpp::Node *parent, string indentation = "") const;
+//    void writeXml(xmlpp::Node *parent, string indentation = "") const;
 	string toString() const;
     string getValue() const;
     bool isConstant() const;

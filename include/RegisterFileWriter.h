@@ -1,4 +1,4 @@
-#ifndef REGISTERFILEWRITER
+/*#ifndef REGISTERFILEWRITER
 #define REGISTERFILEWRITER
 
 #include "RegisterFile.h"
@@ -16,4 +16,4 @@ public:
 
 
 #endif // REGISTERFILEWRITER
-
+*/

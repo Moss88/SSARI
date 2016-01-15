@@ -1,4 +1,4 @@
-#ifndef REGISTERFILEREADER_H
+/*#ifndef REGISTERFILEREADER_H
 #define REGISTERFILEREADER_H
 
 #include "RegisterFile.h"
@@ -35,5 +35,5 @@ private:
 
 }
 #endif // REGISTERFILEREADER_H
-
+*/
 
